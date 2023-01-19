@@ -1,4 +1,4 @@
-package crawl;
+package crawler;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,24 +27,28 @@ public class Lehoi {
             Elements rows = table.select("tr");
 
             JSONArray festivalList = new JSONArray();
-            for (int i = 1; i < rows.size(); i++) { //first row is the col names so skip it.
+            
+            for (int i = 1; i < rows.size(); i++) { // first row is the col names so skip it.
             	Element row = rows.get(i);
             	
             	Element date = row.select("td").get(0);            	
-//        		System.out.println("Date: " + date.text());
         		
         		Element place = row.select("td").get(1);            	
-//        		System.out.println("Place: " + place.text());
         		
         		Element name = row.select("td").get(2);            	
-//        		System.out.println("Name: " + name.text());
         		
-        		JSONObject festival = new JSONObject();
-                JSONObject festivalItem =  new JSONObject();
-                festivalItem.put("date (lunar calendar)", date.text());
-                festivalItem.put("place", place.text());
-                festivalItem.put("name", name.text());
-                festival.put("festivals list", festivalItem);
+        		Element firstHeldYear = row.select("td").get(3);
+        		
+        		Element relatedCharacters = row.select("td").get(4);
+
+                JSONObject festival =  new JSONObject();
+                
+                festival.put("date (lunar calendar)", date.text());
+                festival.put("place", place.text());
+                festival.put("name", name.text());
+                festival.put("firstHeldYear", firstHeldYear.text());
+                festival.put("relatedCharacters", relatedCharacters.text());
+
                 festivalList.put(festival);    
             }
             
