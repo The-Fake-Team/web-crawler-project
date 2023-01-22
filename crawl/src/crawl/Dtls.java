@@ -1,4 +1,4 @@
-package crawl;
+package crawler;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,62 +14,67 @@ import org.jsoup.select.Elements;
 public class Dtls {
 
 	public static void main(String[] args) throws JSONException {
-		String url = "http://dsvh.gov.vn/danh-muc-di-tich-quoc-gia-dac-biet-1752";
+		
+		String url = "http://dsvh.gov.vn/danh-muc-di-tich-quoc-gia-dac-biet-1752"; 
         Document doc = null;
         Document doc_link;
 
         try {
-
+        	
             doc = Jsoup
                     .connect(url)
                     .userAgent("Jsoup client")
                     .timeout(20000).get();
             
-            Element table = doc.select("table").get(0); //select the first table.
+            Element table = doc.select("table").get(0); // select the first table.
             Elements rows = table.select("tr");
-            Element name, date_recognize, place;
+            Element name, recognitionDate, place;
             Elements link, detail, description;
+                        
+            JSONArray historicalSiteList = new JSONArray();
             
-            String placeText;
-            
-            JSONArray siteList = new JSONArray();
             for (int i = 1; i < rows.size(); i++) { //first row is the col names so skip it.
-            	JSONObject site = new JSONObject();
-                JSONObject siteItem =  new JSONObject();
-            	System.out.println(i);
-                Element row = rows.get(i);
-                Elements cols = row.select("td");        
+            	
+            	JSONObject historicalSite = new JSONObject();
+                Element row = rows.get(i); // get row i
+                Elements cells = row.select("td"); // get cells in row i
                 
-                name = cols.select("span[style=font-size:10.5pt]").get(1);  
-                siteItem.put("name", name.text());
-                placeText = "";
-                try {
-                	place = cols.select("span[style=font-size:10.5pt]").get(5);
-                	placeText = place.text();
+                name = cells.select("p").get(1);  
+                historicalSite.put("name", name.text());
+                
+                recognitionDate = cells.select("p").get(2);
+                historicalSite.put("recognitionDate", recognitionDate.text().replace("Ngày ", ""));
+                
+                place = cells.select("p").get(3);
+                historicalSite.put("place", place.text());
+                
+//                try {
+//                	
+//                	place = cells.select("p").get(5);
+//                	placeText = place.text();
+//                	
+//                	
+//                } catch(Exception e) {
+//                	recognitionDate = cells.select("span[style=font-size:10.5pt]").get(3);                	
+//                	historicalSite.put("date recognized", recognitionDate.text().replace("Ngày ", ""));   	
+//                	
+//                	if (cells.select("span[style=font-size:10.5pt]").size() >= 5) {
+//                		System.out.println(cells.select("span[style=font-size:10.5pt]").size());
+//	            		place = cells.select("span[style=font-size:10.5pt]").get(4);
+//	            		placeText = place.text();
+//                	}
+//
+//                }
+                                
+                link = cells.select("a[href]");
+                
+                if (link.attr("abs:href") != "") {
                 	
-                	date_recognize = cols.select("span[style=font-size:10.5pt]").get(4);
-                	siteItem.put("date recognized", date_recognize.text());
-                } catch(Exception e) {
-                	date_recognize = cols.select("span[style=font-size:10.5pt]").get(3);                	
-                	siteItem.put("date recognized", date_recognize.text().replace("Ngày ", ""));   	
-                	
-                	if (cols.select("span[style=font-size:10.5pt]").size() >= 5) {
-                		System.out.println(cols.select("span[style=font-size:10.5pt]").size());
-	            		place = cols.select("span[style=font-size:10.5pt]").get(4);
-	            		placeText = place.text();
-                	}
-
-                }
-                
-                siteItem.put("place", placeText);               
-                
-                link = cols.select("a[href]");
-                if (link.attr("abs:href") != "") {    
                 	try {
 		                doc_link = Jsoup.connect(link.attr("abs:href")).timeout(10000).get();
 		                
 		                description = doc_link.select("div[class=description]");
-		                siteItem.put("description", description.text());
+		                historicalSite.put("description", description.text());
 		                
 //		                Unlink to add detail
 //		                doc_link.select("strong").remove();
@@ -81,12 +86,11 @@ public class Dtls {
                 	}
                 }
                 
-                site.put("festivals list", siteItem);
-                siteList.put(site);             
+                historicalSiteList.put(historicalSite);   
             }
             
             FileWriter file = new FileWriter("historical_site_no_detail.json");
-            file.write(siteList.toString());
+            file.write(historicalSiteList.toString());
             
             file.close();
 
@@ -95,5 +99,4 @@ public class Dtls {
         } 
 
 	}
-
 }
