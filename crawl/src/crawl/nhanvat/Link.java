@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 public class Link {
 
 	public static void main(String[] args) {
-		String url = "https://vansu.vn/viet-nam/viet-nam-nhan-vat";
+		String url = "https://vansu.vn/viet- nam/viet-nam-nhan-vat";
 		Document doc = null;
 		String allLink = "";
 		

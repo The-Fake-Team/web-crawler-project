@@ -1,10 +1,3 @@
-package crawl;
-
-/**
- * Author: NTNuan
- * Demo Crawl data từ trang các web dùng Jsoup và JSON
- * 9/1/2023
- */
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,10 +25,9 @@ public class Demo {
         if (values.size() >= keys.size()) {
             for (int j = indexLastValue; j < values.size(); j++) {
                 lastValue = lastValue.concat(
-                        values.get(j).wholeText()
-                                // Làm sạch các kí tự thừa
-                                .replace("\n", "")
-                                .replaceAll("[\u2013\u2014.]", "-")
+                        values.get(j).ownText()
+                                .replaceAll("\\[([^\\]]+)\\]", ",")
+                                .replaceAll("\\(([^\\]]+)\\)", ",")
                                 .trim());
             }
         }
@@ -48,8 +40,8 @@ public class Demo {
                         .replace("\n", "")
                         .trim();
                 String value = values.get(i).wholeText()
-                        .replace("\n", "")
-                        .replaceAll("[\u2013\u2014.]", "-")
+                        .replaceAll("\\[([^\\]]+)\\]", ",")
+                        .replaceAll("\\(([^\\]]+)\\)", ",")
                         .trim();
                 object.put(key, value);
             }
@@ -60,47 +52,68 @@ public class Demo {
         }
     }
 
-    public static void main(String[] args) {
-        String url = "https://nguoikesu.com";
+    static String extractInt(String str)
+    {
+        // Replacing every non-digit number
+        // with a space(" ")
+        str = str.replaceAll("[^\\d]", " ");
+ 
+        // Remove extra spaces from the beginning
+        // and the ending of the string
+        str = str.trim();
+ 
+        // Replace all the consecutive white
+        // spaces with a single space
+        str = str.replaceAll(" + ", " ");
+ 
+        if (str.equals(" "))
+            return "-1";
+        return str;
+    }
+
+    public static void main(String[] args) throws JSONException {
+        String url = "https://vansu.vn/viet-nam/nien-bieu-lich-su";
         Document doc = null;
 
         String url2 = "https://vi.wikipedia.org/wiki/Vua_Việt_Nam";
         Document doc2 = null;
         try {
-
             /**
-             * Crawl data from https://nguoikesu.com
+             * Crawl data from https://vansu.vn/viet-nam/nien-bieu-lich-su
              */
             doc = Jsoup
                     .connect(url)
                     .userAgent("Jsoup client")
                     .timeout(20000).get();
 
-            Elements lstArticles = doc.select("#jm-left");
-            Elements listElement0 = lstArticles.select("ul.jm-red.list-categories.title-star-ms>li.level-0");
+            Elements container = doc.select(".container");
+            Elements listPeriod = container.get(1).select("div>b>a:nth-of-type(1)");
 
-            JSONArray jsonArrayElement0 = new JSONArray();
-            for (Element element0 : listElement0) {
-                Elements listElement1 = element0.select("ul>li.level-1>a");
+            JSONArray jsonArrayPeriod = new JSONArray();
+            for (int i = 0; i < listPeriod.size(); i++) {
 
                 JSONObject jsonObject = new JSONObject();
-                JSONArray jsonArrayElement1 = new JSONArray();
 
-                for (Element element1 : listElement1) {
-                    JSONObject jsonObject1 = new JSONObject();
-                    jsonObject1.put("name", element1.text());
-                    jsonArrayElement1.put(jsonObject1);
+                jsonObject.put("name", listPeriod.get(i).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+                String[] myArray = extractInt(listPeriod.get(i).text()).split("\\s+");
+                if (myArray.length > 1 && i+1 <= listPeriod.size()) {
+                    String[] nextArray = extractInt(listPeriod.get(i+1).text()).split("\\s+");
+                    int start = Integer.parseInt(myArray[0]);
+                    int end = Integer.parseInt(myArray[1]);
+                    int nextStart = Integer.parseInt(nextArray[0]);
+                    jsonObject.put("start", start > end ? 0-start : start);
+                    jsonObject.put("end", start > end && end >  nextStart  ? 0-end : end);
+                } else{
+                    jsonObject.put("start",myArray[0] == ""?JSONObject.NULL: Integer.parseInt(myArray[0]));
+                    jsonObject.put("end", JSONObject.NULL);
                 }
-
-                jsonObject.put("name", element0.select(">a").text());
-                jsonObject.put("list", jsonArrayElement1);
-                jsonArrayElement0.put(jsonObject);
+                jsonArrayPeriod.put(jsonObject);
             }
 
             JSONObject mainObj = new JSONObject();
-            mainObj.put("Trieu dai", jsonArrayElement0);
+            mainObj.put("Period", jsonArrayPeriod);
 
-            FileWriter fw = new FileWriter("testout.json");
+            FileWriter fw = new FileWriter("period.json");
             fw.write(mainObj.toString());
 
             fw.close();
@@ -112,16 +125,17 @@ public class Demo {
             doc2 = Jsoup
                     .connect(url2)
                     .userAgent("Jsoup client")
-                    .timeout(50000).get();
-            Elements tablesKing = doc2.select(".mw-parser-output>table:not(:nth-of-type(1)):not(:nth-last-of-type(1))");
-
+                    .timeout(20000).get();
+            Elements docContent = doc2.select("#mw-content-text>.mw-parser-output");
+            Elements tablesKing = docContent.select("table:not(:nth-of-type(1)):not(:nth-last-of-type(1))");
+            Elements titles = docContent.select("h3>span.mw-headline");
             JSONArray jsonArrayKingTables = new JSONArray();
 
-            int indexTable = 1;
-            for (Element element : tablesKing) {
+            int indexTable = 0;
+            for (int i=0; i<tablesKing.size(); i++) {
                 /// Tìm các element chứa keys và values cần
-                Elements listKeyTables = element.select("tr:nth-of-type(1)>th");
-                Elements listValueTables = element.select("tr:not(:nth-of-type(1))");
+                Elements listKeyTables = tablesKing.get(i).select("tr:nth-of-type(1)>th");
+                Elements listValueTables = tablesKing.get(i).select("tr:not(:nth-of-type(1))");
 
                 if (listKeyTables.size() > 0) { /// Loại bỏ những bảng không có dữ liệu
                     JSONObject jsonObjectKingTable = new JSONObject();
@@ -134,14 +148,28 @@ public class Demo {
                         jsonArrayKing.put(jsonObjecKing);
                     }
 
-                    jsonObjectKingTable.put("name", "Table " + indexTable);
                     jsonObjectKingTable.put("list king", jsonArrayKing);
+                        
+                    String[] periodArray = extractInt(titles.get(indexTable).text()).split("\\s+");
+                    if (periodArray.length > 1 && indexTable+1 < titles.size()) {
+                        String[] nextArray = extractInt(titles.get(indexTable+1).text()).split("\\s+");
+                        int start = Integer.parseInt(periodArray[0]);
+                        int end = Integer.parseInt(periodArray[1]);
+                        int nextStart = Integer.parseInt(nextArray[0]);
+                        jsonObjectKingTable.put("period start", start > end ? 0-start : start);
+                        jsonObjectKingTable.put("period end", start > end && end > nextStart  ? 0-end : end);
+                    } else if (indexTable == titles.size()-1) {
+                        jsonObjectKingTable.put("period start", Integer.parseInt(periodArray[0]));
+                        jsonObjectKingTable.put("period end", Integer.parseInt(periodArray[1]));
+                    }
 
-                    System.out.println("Get table " + indexTable + " successfully!!");
+                    // jsonObjectKingTable.put("period", titles.get(indexTable).text());
+                    jsonObjectKingTable.put("name period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+
+                    System.out.println("Get table " + (indexTable) + " successfully!!");
                     indexTable++;
-
                     jsonArrayKingTables.put(jsonObjectKingTable);
-                }
+                } 
             }
 
             JSONObject allKingTables = new JSONObject();
@@ -149,12 +177,10 @@ public class Demo {
 
             FileWriter fwk = new FileWriter("testoutKing.json");
             fwk.write(allKingTables.toString());
-
+            
             fwk.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException j) {
-            j.printStackTrace();
         }
     }
 }
