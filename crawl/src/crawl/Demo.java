@@ -110,11 +110,11 @@ public class Demo {
                 jsonArrayPeriod.put(jsonObject);
             }
 
-            JSONObject mainObj = new JSONObject();
-            mainObj.put("Period", jsonArrayPeriod);
+            // JSONObject mainObj = new JSONObject();
+            // mainObj.put("Period", jsonArrayPeriod);
 
             FileWriter fw = new FileWriter("period.json");
-            fw.write(mainObj.toString());
+            fw.write(jsonArrayPeriod.toString());
 
             fw.close();
 
@@ -172,11 +172,11 @@ public class Demo {
                 } 
             }
 
-            JSONObject allKingTables = new JSONObject();
-            allKingTables.put("All king Tables", jsonArrayKingTables);
+            // JSONObject allKingTables = new JSONObject();
+            // allKingTables.put("All king Tables", jsonArrayKingTables);
 
             FileWriter fwk = new FileWriter("testoutKing.json");
-            fwk.write(allKingTables.toString());
+            fwk.write(jsonArrayKingTables.toString());
             
             fwk.close();
         } catch (IOException e) {
