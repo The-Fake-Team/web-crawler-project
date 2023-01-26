@@ -19,11 +19,10 @@ public class HistoricEvent {
     	
     	JSONObject historicEvent = new JSONObject();
     	
-    	try {    		
     		Document doc = Jsoup
     				.connect(url)
     				.userAgent("Jsoup client")
-    				.timeout(10000).get();
+    				.timeout(20000).get();
     		
     		
     		Elements listElement = doc.select(".divide-tag");
@@ -34,13 +33,11 @@ public class HistoricEvent {
     		for(int i = 1; i < listElement.size(); i++) {
     			
     			if(i == 1) {
-    				
     				Elements detail = listElement.get(i).select(".card-body");
     				
     				historicEvent.put("detail", detail.get(0).text());
     				
-    			} else if(i == 2 ){
-    				
+    			} else if(i == 2){
     				Elements referenceLinks = listElement.get(i).select(".card-body>a.nut_nhan");
     				
     				String allReferenceUrls = "";
@@ -48,24 +45,45 @@ public class HistoricEvent {
     				for (int j = 0; j < referenceLinks.size(); j ++) {
     					allReferenceUrls += referenceLinks.get(j).text() + "\n";
     				}
+    				
     				historicEvent.put("references",allReferenceUrls);
     			} else {
     				
     				Elements key = listElement.get(i).select("h3.header-edge");
-    				Elements value = listElement.get(i).select(".card-body>a.click ");
+    				Elements values = listElement.get(i).select(".card-body>a.click");
     				
-    				if (key.get(0).text().equals("Nhân vật liên quan")) {    					
-    					historicEvent.put("relatedFigures", value.get(0).text());
+    				if (key.get(0).text().equals("Nhân vật liên quan")) {
+    					
+    					String relatedFigures = "";
+    					    					
+    					for (int j = 0; j < values.size(); j ++) {
+    						if (j < values.size() - 1) {    							
+    							relatedFigures += values.get(j).text() + ", ";
+    						}
+    						
+    						if (j == values.size() - 1) {
+    							relatedFigures += values.get(j).text();
+    						}
+    					}
+    					
+    					historicEvent.put("relatedFigures", relatedFigures);
     				} else {
-    					historicEvent.put("relatedSites", value.get(0).text());
-    				}
+    					String relatedSites = "";
+    					
+    					for (int j = 0; j < values.size(); j ++) {
+    						if (j < values.size() - 1) {    							
+    							relatedSites += values.get(j).text() + ", ";
+    						}
+    						
+    						if (j == values.size() - 1) {
+    							relatedSites += values.get(j).text();
+    						}
+    					}
+    					
+    					historicEvent.put("relatedSites", relatedSites);    				}
     			}
     		}
     		
-    	} catch (IOException e) {
-            e.printStackTrace();
-        }
-    	
     	return historicEvent;
 	}
 
