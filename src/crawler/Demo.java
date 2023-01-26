@@ -1,3 +1,5 @@
+package crawler;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,18 +14,17 @@ import org.json.JSONException;
 
 public class Demo {
 
-    /// Hàm put dữ liệu vào object theo keys và values đã thu thập được từ các
-    /// element
     public static void putToObject(JSONObject object, Elements keys, Elements values) {
 
-        /// Vì số values có thể nhiểu hơn số keys
-        /// Số values nhiều hơn keys do keys cuối "Trị vì" có 3 values là "năm lên
-        /// ngôi", "-", "năm kết thúc"
-        /// Tạo lastValue
+        /// Because the number of value can be more than the number of key
+        /// The number of values is more than the keys because the last key "reign" has 3 values as "start reigning year
+        /// ", "-", "end reigning year"
+    	
         String lastValue = "";
-        int indexLastValue = keys.size() - 1;
+        int lastKeyIndex = keys.size() - 1;
+        
         if (values.size() >= keys.size()) {
-            for (int j = indexLastValue; j < values.size(); j++) {
+            for (int j = lastKeyIndex; j < values.size(); j++) {
                 lastValue = lastValue.concat(
                         values.get(j).ownText()
                                 .replaceAll("\\[([^\\]]+)\\]", ",")
@@ -31,11 +32,9 @@ public class Demo {
                                 .trim());
             }
         }
-        // System.out.println("lastValue=" + lastValue);
 
-        /// Put dữ liệu
         try {
-            for (int i = 0; i < indexLastValue; i++) {
+            for (int i = 0; i < lastKeyIndex; i++) {
                 String key = keys.get(i).wholeOwnText()
                         .replace("\n", "")
                         .trim();
@@ -46,7 +45,7 @@ public class Demo {
                 object.put(key, value);
             }
             object.put(
-                    keys.get(indexLastValue).wholeOwnText().replace("\n", "").trim(), lastValue);
+                    keys.get(lastKeyIndex).wholeOwnText().replace("\n", "").trim(), lastValue);
         } catch (JSONException je) {
             je.printStackTrace();
         }
@@ -72,8 +71,8 @@ public class Demo {
     }
 
     public static void main(String[] args) throws JSONException {
-        String url = "https://vansu.vn/viet-nam/nien-bieu-lich-su";
-        Document doc = null;
+        String url1 = "https://vansu.vn/viet-nam/nien-bieu-lich-su";
+        Document doc1 = null;
 
         String url2 = "https://vi.wikipedia.org/wiki/Vua_Việt_Nam";
         Document doc2 = null;
@@ -81,74 +80,91 @@ public class Demo {
             /**
              * Crawl data from https://vansu.vn/viet-nam/nien-bieu-lich-su
              */
-            doc = Jsoup
-                    .connect(url)
+        	doc1 = Jsoup
+                    .connect(url1)
                     .userAgent("Jsoup client")
                     .timeout(20000).get();
 
-            Elements container = doc.select(".container");
-            Elements listPeriod = container.get(1).select("div>b>a:nth-of-type(1)");
+            Elements container = doc1.select(".container"); 
+            Elements historicalPeriods = container.get(1).select("div>b>a:nth-of-type(1)");
 
-            JSONArray jsonArrayPeriod = new JSONArray();
-            for (int i = 0; i < listPeriod.size(); i++) {
+            JSONArray historicalPeriodList = new JSONArray();
+            
+            for (int i = 0; i < historicalPeriods.size(); i++) {
 
-                JSONObject jsonObject = new JSONObject();
-
-                jsonObject.put("name", listPeriod.get(i).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
-                String[] myArray = extractInt(listPeriod.get(i).text()).split("\\s+");
-                if (myArray.length > 1 && i+1 <= listPeriod.size()) {
-                    String[] nextArray = extractInt(listPeriod.get(i+1).text()).split("\\s+");
-                    int start = Integer.parseInt(myArray[0]);
-                    int end = Integer.parseInt(myArray[1]);
-                    int nextStart = Integer.parseInt(nextArray[0]);
-                    jsonObject.put("start", start > end ? 0-start : start);
-                    jsonObject.put("end", start > end && end >  nextStart  ? 0-end : end);
+                JSONObject historicalPeriod = new JSONObject();
+                
+                String historicalPeriodTitle = historicalPeriods.get(i).text();
+                
+                String historicalPeriodName = historicalPeriodTitle.replaceAll("\\(.+\\)", "").trim(); // only get name of historical event
+                historicalPeriod.put("name", historicalPeriodName);
+                
+                String[] startEnd = extractInt(historicalPeriodTitle).split("\\s+"); // get start and end time
+                
+                if (startEnd.length > 1 && i < historicalPeriods.size()) {
+                	
+                    String[] nextPeriodStartEnd = extractInt(historicalPeriods.get(i+1).text()).split("\\s+");
+                    
+                    int start = Integer.parseInt(startEnd[0]);
+                    int end = Integer.parseInt(startEnd[1]);
+                    
+                    int nextPeriodStart = Integer.parseInt(nextPeriodStartEnd[0]);
+                    
+                    historicalPeriod.put("start", start > end ? 0-start : start);
+                    historicalPeriod.put("end", start > end && end >  nextPeriodStart  ? 0-end : end);
+                    
                 } else{
-                    jsonObject.put("start",myArray[0] == ""?JSONObject.NULL: Integer.parseInt(myArray[0]));
-                    jsonObject.put("end", JSONObject.NULL);
+                	historicalPeriod.put("start",startEnd[0] == ""?JSONObject.NULL: Integer.parseInt(startEnd[0]));
+                	historicalPeriod.put("end", JSONObject.NULL);
                 }
-                jsonArrayPeriod.put(jsonObject);
+                
+                historicalPeriodList.put(historicalPeriod);
             }
 
-            // JSONObject mainObj = new JSONObject();
-            // mainObj.put("Period", jsonArrayPeriod);
+            FileWriter myWriter = new FileWriter("period.json");
+            myWriter.write(historicalPeriodList.toString());
 
-            FileWriter fw = new FileWriter("period.json");
-            fw.write(jsonArrayPeriod.toString());
-
-            fw.close();
-
-            ////////////////////////////////
+            myWriter.close();
+            
             /**
              * Crawl data from https://vi.wikipedia.org/wiki/Vua_Việt_Nam
              */
+            
             doc2 = Jsoup
                     .connect(url2)
                     .userAgent("Jsoup client")
                     .timeout(20000).get();
+            
             Elements docContent = doc2.select("#mw-content-text>.mw-parser-output");
-            Elements tablesKing = docContent.select("table:not(:nth-of-type(1)):not(:nth-last-of-type(1))");
+            Elements kingsTables = docContent.select("table:not(:nth-of-type(1)):not(:nth-last-of-type(1))");
             Elements titles = docContent.select("h3>span.mw-headline");
+            
             JSONArray jsonArrayKingTables = new JSONArray();
 
             int indexTable = 0;
-            for (int i=0; i<tablesKing.size(); i++) {
-                /// Tìm các element chứa keys và values cần
-                Elements listKeyTables = tablesKing.get(i).select("tr:nth-of-type(1)>th");
-                Elements listValueTables = tablesKing.get(i).select("tr:not(:nth-of-type(1))");
+            
+            for(int i = 0; i < kingsTables.size(); i++) {
+            	
+                Elements tableKeyList = kingsTables.get(i).select("tr:nth-of-type(1)>th"); // get individual table's key list
+                Elements tableValueList = kingsTables.get(i).select("tr:not(:nth-of-type(1))"); // get individual table's value list
 
-                if (listKeyTables.size() > 0) { /// Loại bỏ những bảng không có dữ liệu
+                if (tableKeyList.size() > 0) { // remove empty table
+                	
                     JSONObject jsonObjectKingTable = new JSONObject();
-                    JSONArray jsonArrayKing = new JSONArray();
+                    JSONArray kingList = new JSONArray();
 
-                    for (Element elementValue : listValueTables) {
-                        JSONObject jsonObjecKing = new JSONObject();
-                        Elements listValueKing = elementValue.select("td");
-                        putToObject(jsonObjecKing, listKeyTables, listValueKing);
-                        jsonArrayKing.put(jsonObjecKing);
+                    for (Element value : tableValueList) {
+                    	
+                        JSONObject king = new JSONObject();
+                        
+                        Elements kingValueList = value.select("td");
+                        
+                        putToObject(king, tableKeyList, kingValueList);
+                        
+                        kingList.put(king);
                     }
 
-                    jsonObjectKingTable.put("list king", jsonArrayKing);
+                    jsonObjectKingTable.put("kingList", kingList);
                         
                     String[] periodArray = extractInt(titles.get(indexTable).text()).split("\\s+");
                     if (periodArray.length > 1 && indexTable+1 < titles.size()) {

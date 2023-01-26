@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Thời tiền sử",
+        "start": null,
+        "end": null
+    },
+    {
+        "name": "Thời kỳ dựng nước",
+        "start": -2000,
+        "end": -258
+    },
+    {
+        "name": "Nhà Thục",
+        "start": -257,
+        "end": -208
+    },
+    {
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ nhất",
+        "start": -207,
+        "end": 39
+    },
+    {
+        "name": "Trưng Nữ Vương",
+        "start": 40,
+        "end": 43
+    },
+    {
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ hai",
+        "start": 43,
+        "end": 542
+    },
+    {
+        "name": "Nhà tiền Lý và nhà Triệu",
+        "start": 544,
+        "end": 602
+    },
+    {
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
+        "start": 603,
+        "end": 939
+    },
+    {
+        "name": "Thời kỳ xây nền tự chủ",
+        "start": 905,
+        "end": 938
+    },
+    {
+        "name": "Nhà Ngô",
+        "start": 939,
+        "end": 965
+    },
+    {
+        "name": "Nhà Đinh",
+        "start": 968,
+        "end": 980
+    },
+    {
+        "name": "Nhà Tiền Lê",
+        "start": 980,
+        "end": 1009
+    },
+    {
+        "name": "Nhà Lý",
+        "start": 1010,
+        "end": 1225
+    },
+    {
+        "name": "Nhà Trần",
+        "start": 1225,
+        "end": 1400
+    },
+    {
+        "name": "Nhà Hồ",
+        "start": 1400,
+        "end": 1407
+    },
+    {
+        "name": "Hậu Trần",
+        "start": 1407,
+        "end": 1413
+    },
+    {
+        "name": "Thời kỳ thuộc Minh",
+        "start": 1414,
+        "end": 1427
+    },
+    {
+        "name": "Triều Lê Sơ",
+        "start": 1428,
+        "end": 1527
+    },
+    {
+        "name": "Bắc Triều - Nam Triều",
+        "start": 1527,
+        "end": 1592
+    },
+    {
+        "name": "Thời Trịnh - Nguyễn phân tranh",
+        "start": 1533,
+        "end": 1788
+    },
+    {
+        "name": "Nhà Tây Sơn",
+        "start": 1778,
+        "end": 1802
+    },
+    {
+        "name": "Nhà Nguyễn thời kỳ độc lập",
+        "start": 1802,
+        "end": 1883
+    },
+    {
+        "name": "Thời kì Pháp đô hộ",
+        "start": 1883,
+        "end": 1945
+    },
+    {
+        "name": "Nước Việt Nam mới",
+        "start": 1945,
+        "end": null
+    }
+]
