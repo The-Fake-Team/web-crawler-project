@@ -76,6 +76,7 @@ public class Demo {
 
         String url2 = "https://vi.wikipedia.org/wiki/Vua_Việt_Nam";
         Document doc2 = null;
+        
         try {
             /**
              * Crawl data from https://vansu.vn/viet-nam/nien-bieu-lich-su

@@ -80,7 +80,8 @@ public class HistoricEvent {
     						}
     					}
     					
-    					historicEvent.put("relatedSites", relatedSites);    				}
+    					historicEvent.put("relatedSites", relatedSites);    				
+    				}
     			}
     		}
     		
