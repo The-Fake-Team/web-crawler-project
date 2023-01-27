@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/jsoup-1.15.3 (1).jar"/>
-	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/json-20220924.jar"/>
-	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/java-json.jar/java-json.jar"/>
+	<classpathentry kind="lib" path="E:/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/jsoup-1.15.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-19"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
