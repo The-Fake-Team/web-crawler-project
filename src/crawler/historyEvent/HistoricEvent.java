@@ -154,6 +154,7 @@ public class HistoricEvent {
 		     }
 		    
 	        myReader.close();
+
 	        FileWriter file = new FileWriter("historicalEvent.json");
             file.write(historicEventList.toString());
             
