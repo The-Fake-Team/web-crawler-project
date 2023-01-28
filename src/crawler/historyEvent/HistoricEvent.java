@@ -18,6 +18,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import crawler.utils.Utils;
+
 public class HistoricEvent {
 	
 	private static Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
@@ -30,7 +32,7 @@ public class HistoricEvent {
     		Document doc = Jsoup
     				.connect(url)
     				.userAgent("Jsoup client")
-    				.timeout(20000).get();
+    				.timeout(50000).get();
     		
     		
     		Elements listElement = doc.select(".divide-tag");
@@ -39,7 +41,7 @@ public class HistoricEvent {
     		historicEvent.put("name", name.text());
     		
     		for(int i = 1; i < listElement.size(); i++) {
-    			
+    			historicEvent.put("id", i);
     			if(i == 1) {
     				Elements detail = listElement.get(i).select(".card-body");
     				
@@ -65,13 +67,25 @@ public class HistoricEvent {
     					String relatedFigures = "";
     					ArrayList<Integer> relatedFiguresId = new ArrayList<Integer>();
     					    					
-    					for (int j = 0; j < values.size(); j ++) {
+    					for (int j = 0; j < values.size(); j++) {
     						String figureName = values.get(j).text().replaceAll("\\(.*?\\) ?", "").trim();
+    						
     						figureNameAndId.forEach((figureId, nameList) -> {
-    							if (nameList.contains(figureName)) {
-    								relatedFiguresId.add(figureId);
+    							
+    							for (String eachName : nameList) {
+    								// add reference figure id
+    								if ((eachName.toLowerCase().equals(figureName.toLowerCase())) && eachName.length() >= 2) {
+    									relatedFiguresId.add(figureId);
+    									break;
+    								}
+    								
     							}
     						});
+    						
+    						// If figure id can't be found, use 0 instead 
+    						if (relatedFiguresId.size() == j) {
+    							relatedFiguresId.add(0);
+    						}
     						
     						if (j < values.size() - 1) {    							
     							relatedFigures += figureName + ", ";
@@ -130,11 +144,17 @@ public class HistoricEvent {
 		    while (myReader.hasNextLine()) {
 		    	
 		        String link = myReader.nextLine();
-		        historicEventList.add(infoFromLink(link));
+		        try {
+		        	historicEventList.add(infoFromLink(link));
+		        }
+		        catch (IOException e) {
+		        	System.out.println(link + " has an error");
+		        	continue;
+		        }
 		     }
 		    
 	        myReader.close();
-	        FileWriter file = new FileWriter("historyEvent.json");
+	        FileWriter file = new FileWriter("historicalEventWithId.json");
             file.write(historicEventList.toString());
             
             file.close();
