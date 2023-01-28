@@ -10,6 +10,19 @@ public final class Utils {
 	    
 	}
 	
+	public static String removeTitle(String name) {
+		
+		// Remove title of historical figures, such as "vua", "chúa",... 
+		String[] titlesList = {"vua", "chúa", "đại tướng", "chủ tịch", "thủ tướng"};
+		for (String title : titlesList) {
+			if (name.startsWith(title)) {
+				name = name.replace(title, "").trim();
+				break;
+			}
+		}
+		return name;
+	}
+	
 	public static String extractInt(String str)
     {
         // Replacing every non-digit number
