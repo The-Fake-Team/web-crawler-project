@@ -1,13 +1,18 @@
 package crawler.historyEvent;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
-import org.json.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,7 +20,10 @@ import org.jsoup.select.Elements;
 
 public class HistoricEvent {
 	
-    public static JSONObject infoFromLink(String url) throws IOException, JSONException {
+	private static Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
+	
+    @SuppressWarnings("unchecked")
+	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
     	
     	JSONObject historicEvent = new JSONObject();
     	
@@ -55,18 +63,27 @@ public class HistoricEvent {
     				if (key.get(0).text().equals("Nhân vật liên quan")) {
     					
     					String relatedFigures = "";
+    					ArrayList<Integer> relatedFiguresId = new ArrayList<Integer>();
     					    					
     					for (int j = 0; j < values.size(); j ++) {
+    						String figureName = values.get(j).text().replaceAll("\\(.*?\\) ?", "").trim();
+    						figureNameAndId.forEach((figureId, nameList) -> {
+    							if (nameList.contains(figureName)) {
+    								relatedFiguresId.add(figureId);
+    							}
+    						});
+    						
     						if (j < values.size() - 1) {    							
-    							relatedFigures += values.get(j).text() + ", ";
+    							relatedFigures += figureName + ", ";
     						}
     						
     						if (j == values.size() - 1) {
-    							relatedFigures += values.get(j).text();
+    							relatedFigures += figureName;
     						}
     					}
     					
     					historicEvent.put("relatedFigures", relatedFigures);
+    					historicEvent.put("relatedFiguresId", relatedFiguresId);
     				} else {
     					String relatedSites = "";
     					
@@ -88,23 +105,36 @@ public class HistoricEvent {
     	return historicEvent;
 	}
 
-	public static void main(String[] args) throws JSONException {
+    @SuppressWarnings("unchecked")
+	public static void main(String[] args) throws JSONException, ParseException {
 		
-		try {
-			JSONArray historicEventList = new JSONArray();
+		JSONParser jsonParser = new JSONParser();
+		try (FileReader reader = new FileReader("historicalFigureWithId.json")) {
 			
+			Object obj = jsonParser.parse(reader);			
+			JSONArray figureList = (JSONArray) obj;
+
+			for (int i = 0; i < figureList.size(); i++) {
+				JSONObject figure = (JSONObject) figureList.get(i);
+				int id = ((Long) figure.get("id")).intValue();
+				figureNameAndId.put(id, new ArrayList<String>());
+				figureNameAndId.get(id).add((String) figure.get("name"));
+				figureNameAndId.get(id).add((String) figure.get("otherName"));
+			}
+			
+			JSONArray historicEventList = new JSONArray();
+
 			File historicEventUrlsFile = new File("historicEventUrls.txt");
 		    Scanner myReader = new Scanner(historicEventUrlsFile);
 		    
 		    while (myReader.hasNextLine()) {
 		    	
 		        String link = myReader.nextLine();
-		        historicEventList.put(infoFromLink(link));
+		        historicEventList.add(infoFromLink(link));
 		     }
 		    
 	        myReader.close();
-	        System.out.print(historicEventList.toString());
-	        FileWriter file = new FileWriter("history_event.json");
+	        FileWriter file = new FileWriter("historyEvent.json");
             file.write(historicEventList.toString());
             
             file.close();

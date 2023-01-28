@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HistoricalFigure {
+	private static int figureId = 1;
 	
 	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
 		
@@ -32,6 +33,9 @@ public class HistoricalFigure {
 						 {1527, 1592}, {1533, 1788}, {1778, 1802}, {1802, 1883}, {1883, 1945}, {1945, 2023}};
 	    
     	JSONObject historicalfigure = new JSONObject();
+    	historicalfigure.put("id", figureId);
+    	figureId++;
+    	System.out.println(figureId);
         		
 		Element name = doc.select("div.active.section").first();
 		historicalfigure.put("name", name.text());
@@ -123,7 +127,7 @@ public class HistoricalFigure {
 		    
 	        myReader.close();
 	        
-	        FileWriter file = new FileWriter("historicalFigure.json");
+	        FileWriter file = new FileWriter("historicalFigureWithId.json");
             file.write(figureList.toString());
             
             file.close();

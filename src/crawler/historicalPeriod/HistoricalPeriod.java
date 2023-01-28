@@ -9,12 +9,13 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import crawler.utils.Utils;
 
 public class HistoricalPeriod {
 	
-	public static void main (String[] args) {
+	public static void main (String[] args) throws JSONException {
 				
         String url = "https://vansu.vn/viet-nam/nien-bieu-lich-su";
         Document doc = null;
