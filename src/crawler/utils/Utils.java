@@ -1,5 +1,9 @@
 package crawler.utils;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.select.Elements;
@@ -8,7 +12,7 @@ public final class Utils {
 	
 	public Utils() {
 	    
-	}
+	}	
 	
 	public static String removeTitle(String name) {
 		

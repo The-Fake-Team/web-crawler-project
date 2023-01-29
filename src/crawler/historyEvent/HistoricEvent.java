@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.JSONException;
@@ -18,12 +20,41 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import crawler.utils.Utils;
 
 public class HistoricEvent {
 	
 	private static Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
 	private static int eventId = 1;
+	
+	public static ArrayList<Integer> getYearsFromEvent(String eventName) {
+			
+			// Extract the years from the event name
+			ArrayList<Integer> yearList = new ArrayList<Integer>();
+			
+			Pattern p = Pattern.compile("\\d+");
+	        Matcher m = p.matcher(eventName);
+	        
+	        while (m.find()) {
+	        	yearList.add(Integer.parseInt(m.group()));
+	        }
+			
+			return yearList;
+			
+		}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONArray createEraObject(int yearStart, int yearEnd) {
+		JSONArray times = new JSONArray();
+		JSONObject time = new JSONObject();
+		
+		time.put("start", yearStart);
+		time.put("end", yearEnd);
+		
+		times.add(time);
+		
+		return times;
+		
+	}
 	
     @SuppressWarnings("unchecked")
 	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
@@ -36,13 +67,31 @@ public class HistoricEvent {
 		Document doc = Jsoup
 				.connect(url)
 				.userAgent("Jsoup client")
-				.timeout(50000).get();
+				.timeout(20000).get();
 		
 		
 		Elements listElement = doc.select(".divide-tag");
 		
 		Element name = listElement.get(0).selectFirst(".header-edge");		
 		historicEvent.put("name", name.text());
+		
+		// Extract the years from the event name
+		ArrayList<Integer> erasYears = new ArrayList<Integer>();
+		
+		Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(name.text());
+        while (m.find()) {
+        	erasYears.add(Integer.parseInt(m.group()));
+        }
+        
+		// Split to year start and end 
+		if (erasYears.size() == 1) {
+			historicEvent.put("time", createEraObject(erasYears.get(0), erasYears.get(0)));
+		}
+		if (erasYears.size() >= 2) {
+			// Get 2 last number as year start and end
+			historicEvent.put("time", createEraObject(erasYears.get(erasYears.size() - 2), erasYears.get(erasYears.size() - 1)));
+		}
 		
 		for(int i = 1; i < listElement.size(); i++) {
 			if(i == 1) {
