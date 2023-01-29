@@ -78,7 +78,7 @@ public class King {
             } 
         }
 
-        FileWriter fwk = new FileWriter("testoutKing.json");
+        FileWriter fwk = new FileWriter("king.json");
         fwk.write(jsonArrayKingTables.toString());
         
         fwk.close();
