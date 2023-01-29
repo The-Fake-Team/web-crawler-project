@@ -127,7 +127,7 @@ public class HistoricalFigure {
 		    
 	        myReader.close();
 	        
-	        FileWriter file = new FileWriter("historicalFigureWithId.json");
+	        FileWriter file = new FileWriter("historicalFigure.json");
             file.write(figureList.toString());
             
             file.close();
