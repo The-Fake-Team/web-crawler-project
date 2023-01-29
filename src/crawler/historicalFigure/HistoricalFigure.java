@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HistoricalFigure {
+	
 	private static int figureId = 1;
 	
 	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
@@ -35,7 +36,6 @@ public class HistoricalFigure {
     	JSONObject historicalfigure = new JSONObject();
     	historicalfigure.put("id", figureId);
     	figureId++;
-    	System.out.println(figureId);
         		
 		Element name = doc.select("div.active.section").first();
 		historicalfigure.put("name", name.text());
