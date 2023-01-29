@@ -1,7 +1,6 @@
 package crawler.historyEvent;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,51 +12,31 @@ import java.util.regex.Pattern;
 import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import crawler.utils.Utils;
 
 public class HistoricEvent {
 	
-	private static Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
 	private static int eventId = 1;
 	
-	public static ArrayList<Integer> getYearsFromEvent(String eventName) {
-			
-			// Extract the years from the event name
-			ArrayList<Integer> yearList = new ArrayList<Integer>();
-			
-			Pattern p = Pattern.compile("\\d+");
-	        Matcher m = p.matcher(eventName);
-	        
-	        while (m.find()) {
-	        	yearList.add(Integer.parseInt(m.group()));
-	        }
-			
-			return yearList;
-			
-		}
-	
 	@SuppressWarnings("unchecked")
-	public static JSONArray createEraObject(int yearStart, int yearEnd) {
-		JSONArray times = new JSONArray();
+	public static JSONObject createEraObject(ArrayList<Integer> startEndYearArray) {
 		JSONObject time = new JSONObject();
 		
-		time.put("start", yearStart);
-		time.put("end", yearEnd);
+		time.put("start", startEndYearArray.get(0));
+		time.put("end", startEndYearArray.get(1));
 		
-		times.add(time);
-		
-		return times;
+		return time;
 		
 	}
 	
     @SuppressWarnings("unchecked")
-	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
+	public static JSONObject infoFromLink(String url, Hashtable<Integer, ArrayList<String>> figureNameAndId) throws IOException, JSONException {
     	
     	JSONObject historicEvent = new JSONObject();
     	
@@ -72,26 +51,51 @@ public class HistoricEvent {
 		
 		Elements listElement = doc.select(".divide-tag");
 		
-		Element name = listElement.get(0).selectFirst(".header-edge");		
+		Element name = listElement.get(0).selectFirst(".header-edge");
 		historicEvent.put("name", name.text());
-		
-		// Extract the years from the event name
+
+				
+			// Extract the years from the event name
+			
 		ArrayList<Integer> erasYears = new ArrayList<Integer>();
-		
-		Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(name.text());
-        while (m.find()) {
-        	erasYears.add(Integer.parseInt(m.group()));
-        }
-        
-		// Split to year start and end 
-		if (erasYears.size() == 1) {
-			historicEvent.put("time", createEraObject(erasYears.get(0), erasYears.get(0)));
-		}
-		if (erasYears.size() >= 2) {
-			// Get 2 last number as year start and end
-			historicEvent.put("time", createEraObject(erasYears.get(erasYears.size() - 2), erasYears.get(erasYears.size() - 1)));
-		}
+			
+		Pattern p = Pattern.compile("\\(-?[\\d\\s].*\\)");
+		Matcher m = p.matcher(name.text());
+			
+		if (m.find()) {	
+			
+			String[] startEndTimeArray = m.group(0).replaceAll("\\(", "").replaceAll("\\)", "").split(" - ");
+				
+			if (startEndTimeArray.length == 2) {
+					
+				String startTime = startEndTimeArray[0].trim();
+				String endTime = startEndTimeArray[1].trim();
+					
+				if (startTime.length() > 0) {
+					erasYears.add(Integer.parseInt(startTime));
+				} else {
+					erasYears.add(null);
+				}
+					
+				if (endTime.length() > 0) {
+					erasYears.add(Integer.parseInt(endTime));
+				} else {
+					erasYears.add(null);
+				}
+				
+				} else {
+					
+					if (startEndTimeArray[0].trim().length() > 0) {						
+						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+					} else {
+						erasYears.add(null);
+						erasYears.add(null);
+					}
+				}
+			}
+			
+			historicEvent.put("time", createEraObject(erasYears));
 		
 		for(int i = 1; i < listElement.size(); i++) {
 			if(i == 1) {
@@ -172,22 +176,10 @@ public class HistoricEvent {
 	}
 
     @SuppressWarnings("unchecked")
-	public static void main(String[] args) throws JSONException, ParseException {
+	public static void main(String[] args) throws JSONException, ParseException, IOException {
 		
-		JSONParser jsonParser = new JSONParser();
-		try (FileReader reader = new FileReader("historicalFigureWithId.json")) {
-			
-			Object obj = jsonParser.parse(reader);			
-			JSONArray figureList = (JSONArray) obj;
+    	Hashtable<Integer, ArrayList<String>> figureNameAndId = Utils.getSimpleHistoricalFigureList();
 
-			for (int i = 0; i < figureList.size(); i++) {
-				JSONObject figure = (JSONObject) figureList.get(i);
-				int id = ((Long) figure.get("id")).intValue();
-				figureNameAndId.put(id, new ArrayList<String>());
-				figureNameAndId.get(id).add((String) figure.get("name"));
-				figureNameAndId.get(id).add((String) figure.get("otherName"));
-			}
-			
 			JSONArray historicEventList = new JSONArray();
 
 			File historicEventUrlsFile = new File("historicEventUrls.txt");
@@ -195,12 +187,13 @@ public class HistoricEvent {
 		    
 		    while (myReader.hasNextLine()) {
 		    	
-		        String link = myReader.nextLine();
+		        String url = myReader.nextLine();
 		        try {
-		        	historicEventList.add(infoFromLink(link));
+		        	historicEventList.add(infoFromLink(url, figureNameAndId));
+		        	System.out.println(url);
 		        }
 		        catch (IOException e) {
-		        	System.out.println(link + " has an error");
+		        	System.out.println(url + " has an error");
 		        	continue;
 		        }
 		     }
@@ -212,8 +205,5 @@ public class HistoricEvent {
             
             file.close();
 	        
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }
 	}
 }
