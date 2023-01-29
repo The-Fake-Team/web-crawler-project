@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="window" prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="webCrawler.DashBoard">
+   <left>
+      <Pane prefHeight="636.0" prefWidth="208.0" style="-fx-background-color: E9E9E9;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="8.0" layoutY="82.0" prefHeight="378.0" prefWidth="207.0" spacing="15.0">
+               <children>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#homePage" prefHeight="25.0" prefWidth="173.0" text="  Trang chủ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/home%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#periods" prefHeight="25.0" prefWidth="173.0" text="  Dòng lịch sử">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/history-book%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#historicalFigures" prefHeight="40.0" prefWidth="197.0" text="  Nhân vật lịch sử">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/role-model.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#historicalSites" prefHeight="25.0" prefWidth="173.0" text="  Di tích lịch sử">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/chinese%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#historicEvents" prefHeight="25.0" prefWidth="173.0" text="  Sự kiện lịch sử">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/schedule.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#kings" prefHeight="25.0" prefWidth="173.0" text="  Vua">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/crown.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" buttonType="RAISED" onAction="#festivals" prefHeight="25.0" prefWidth="173.0" text="  Lễ hội ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/tent.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <JFXButton alignment="TOP_LEFT" buttonType="RAISED" layoutY="32.0" onAction="#homePage" prefHeight="51.0" prefWidth="209.0" text="  Sử Ta">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/viet-nam.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children></Pane>
+   </left>
+   <top>
+      <Pane prefHeight="28.0" prefWidth="988.0" style="-fx-background-color: White; -fx-alignment: center;" styleClass="Top-Pane" stylesheets="@../../style/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <FlowPane hgap="5.0" layoutX="4.0" layoutY="5.0" prefHeight="17.0" prefWidth="67.0">
+               <children>
+                  <ImageView fx:id="Exit" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/Exit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Minimize" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/Minimize.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Maximize" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/Maximize.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </FlowPane>
+            <Label contentDisplay="CENTER" layoutX="508.0" layoutY="5.0">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </top>
+   <center>
+      <AnchorPane>
+         <children>
+            <StackPane fx:id="contentArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

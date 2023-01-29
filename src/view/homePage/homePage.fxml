@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="639.0" prefWidth="772.0">
+         <center>
+            <Pane prefHeight="639.0" prefWidth="772.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane layoutX="155.0" layoutY="105.0" prefHeight="120.0" prefWidth="462.0">
+                     <top>
+                        <JFXButton buttonType="RAISED" prefHeight="43.0" prefWidth="219.0" text="Sử Ta" textAlignment="CENTER" textFill="#2c83ae" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </JFXButton>
+                     </top>
+                     <center>
+                        <JFXButton buttonType="RAISED" prefHeight="23.0" prefWidth="462.0" text="Tìm về cội nguồn lịch sử dân tộc" textFill="#407383" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                     </center>
+                  </BorderPane>
+                  <TextField layoutX="179.0" layoutY="234.0" prefHeight="42.0" prefWidth="391.0" />
+                  <JFXButton layoutX="567.0" layoutY="256.0" prefHeight="45.0" prefWidth="137.0" text=" " />
+                  <ImageView fitHeight="30.0" fitWidth="42.0" layoutX="530.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/loupe.png" />
+                     </image>
+                  </ImageView>
+                  <BorderPane layoutX="23.0" layoutY="371.0" prefHeight="45.0" prefWidth="730.0" style="-fx-background-color: #cfcfcf;">
+                     <left>
+                        <Label prefHeight="21.0" prefWidth="258.0" text="Giới thiệu về Sử Ta" textFill="#25606b" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets left="30.0" />
+                           </BorderPane.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </left>
+                  </BorderPane>
+                  <Text layoutX="24.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trang Thư Viện Lịch Sử Việt Nam được xây dựng với mục đích tạo ra một nơi hiển thị trực quan sinh động các thông tin về lịch sử. Giúp người xem ngoài đọc hiểu các thông tin lịch sử cơ bản, còn có thể gắn kết Sự Kiện - Nhân Vật - Địa Điểm lại cùng nhau. " wrappingWidth="724.0537109375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</Pane>

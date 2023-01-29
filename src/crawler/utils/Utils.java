@@ -1,11 +1,21 @@
 package crawler.utils;
 
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.jsoup.select.Elements;
 
 public final class Utils {
@@ -82,5 +92,28 @@ public final class Utils {
 	            je.printStackTrace();
 	        }
 	    }
+	 
+	 public static Hashtable<Integer, ArrayList<String>> getSimpleHistoricalFigureList () throws IOException, ParseException {
+		 
+		    Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
+			
+			JSONParser jsonParser = new JSONParser();
+			FileReader myReader = new FileReader("historicalFigureWithId.json");
+			
+			Object obj = jsonParser.parse(myReader);	
+			
+			JSONArray figureList = (JSONArray) obj;
+			
+			for (int i = 0; i < figureList.size(); i++) {
+				
+				JSONObject figure = (JSONObject) figureList.get(i);
+				int id = ((Long) figure.get("id")).intValue();
+				figureNameAndId.put(id, new ArrayList<String>());
+				figureNameAndId.get(id).add((String) figure.get("name"));
+				figureNameAndId.get(id).add((String) figure.get("otherName"));
+			}
+			
+			return figureNameAndId;
+	 }
 
 }

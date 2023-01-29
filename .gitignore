@@ -1,2 +1,3 @@
 bin/
 crawler/bin/
+*.classpath

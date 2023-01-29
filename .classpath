@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="E:/java-json.jar/java-json.jar"/>
-	<classpathentry kind="lib" path="E:/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="E:/jsoup-1.15.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-19"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/jsoup-1.15.3 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/json-20220924.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/fontawesomefx-8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danhtung/Downloads/jar_files (2)/jfoenix-9.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
