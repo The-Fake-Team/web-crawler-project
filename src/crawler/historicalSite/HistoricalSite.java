@@ -37,6 +37,8 @@ public class HistoricalSite {
             for (int i = 1; i < rows.size(); i++) { // first row is the col names so skip it.
             	
             	JSONObject historicalSite = new JSONObject();
+            	historicalSite.put("id", i);
+            	
                 Element row = rows.get(i); // get row i
                 Elements cells = row.select("td"); // get cells in row i
                 
@@ -66,7 +68,7 @@ public class HistoricalSite {
                 		
                 		description = individualSiteDoc.select("div[class=description]").get(0);
                 		
-		                historicalSite.put("description", description.text());
+		                historicalSite.put("summary", description.text());
 		                
 		                String detailContent = "";
 		                
@@ -93,7 +95,7 @@ public class HistoricalSite {
                 historicalSiteList.put(historicalSite);
             }
             
-            FileWriter file = new FileWriter("historical_site.json");
+            FileWriter file = new FileWriter("historicalSite.json");
             file.write(historicalSiteList.toString());
             
             file.close();
