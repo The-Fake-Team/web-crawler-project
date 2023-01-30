@@ -26,10 +26,12 @@ public class King {
                 .timeout(20000).get();
         
         Elements docContent = doc.select("#mw-content-text>.mw-parser-output");
+        
         Elements kingsTables = docContent.select("table:not(:nth-of-type(1)):not(:nth-last-of-type(1))");
+        
         Elements titles = docContent.select("h3>span.mw-headline");
         
-        JSONArray jsonArrayKingTables = new JSONArray();
+        JSONArray ErasWithKingList = new JSONArray();
 
         int indexTable = 0;
         
@@ -40,7 +42,7 @@ public class King {
 
             if (tableKeyList.size() > 0) { // remove empty table
             	
-                JSONObject jsonObjectKingTable = new JSONObject();
+                JSONObject eraWithKingList = new JSONObject();
                 JSONArray kingList = new JSONArray();
 
                 for (Element value : tableValueList) {
@@ -49,39 +51,81 @@ public class King {
                     
                     Elements kingValueList = value.select("td");
                     
-                    Utils.putToObject(king, tableKeyList, kingValueList);
+                    putToObject(king, tableKeyList, kingValueList);
                     
                     kingList.put(king);
                 }
 
-                jsonObjectKingTable.put("kingList", kingList);
+                eraWithKingList.put("kingList", kingList);
                     
                 String[] periodArray = Utils.extractInt(titles.get(indexTable).text()).split("\\s+");
+                
+                JSONObject time = new JSONObject();
+                
                 if (periodArray.length > 1 && indexTable+1 < titles.size()) {
+                	
                     String[] nextArray = Utils.extractInt(titles.get(indexTable+1).text()).split("\\s+");
+                    
                     int start = Integer.parseInt(periodArray[0]);
                     int end = Integer.parseInt(periodArray[1]);
                     int nextStart = Integer.parseInt(nextArray[0]);
-                    jsonObjectKingTable.put("period start", start > end ? 0-start : start);
-                    jsonObjectKingTable.put("period end", start > end && end > nextStart  ? 0-end : end);
+                    
+                    
+                    time.put("start", start > end ? 0-start : start);
+                    time.put("end", start > end && end > nextStart  ? 0-end : end);
+                    eraWithKingList.put("time", time);
+                    
                 } else if (indexTable == titles.size()-1) {
-                    jsonObjectKingTable.put("period start", Integer.parseInt(periodArray[0]));
-                    jsonObjectKingTable.put("period end", Integer.parseInt(periodArray[1]));
+                	
+                	time.put("start", Integer.parseInt(periodArray[0]));
+                	time.put("end", Integer.parseInt(periodArray[1]));
+                    eraWithKingList.put("time", time);
                 }
 
-                // jsonObjectKingTable.put("period", titles.get(indexTable).text());
-                jsonObjectKingTable.put("name period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+                eraWithKingList.put("period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
 
                 System.out.println("Get table " + (indexTable) + " successfully!!");
                 indexTable++;
-                jsonArrayKingTables.put(jsonObjectKingTable);
+                ErasWithKingList.put(eraWithKingList);
             } 
         }
 
         FileWriter fwk = new FileWriter("king.json");
-        fwk.write(jsonArrayKingTables.toString());
+        fwk.write(ErasWithKingList.toString());
         
         fwk.close();
 	}
+	
+	 public static void putToObject (JSONObject object, Elements keys, Elements values) throws JSONException {
+
+	        /// Because the number of value can be more than the number of key
+	        /// The number of values is more than the keys because the last key "reign" has 3 values as "start reigning year
+	        /// ", "-", "end reigning year"
+	    	
+	        String lastValue = "";
+	        int lastKeyIndex = keys.size() - 1;
+	        
+	        if (values.size() >= keys.size()) {
+	            for (int j = lastKeyIndex; j < values.size(); j++) {
+	                lastValue = lastValue.concat(
+	                        values.get(j).ownText()
+	                                .replaceAll("\\[([^\\]]+)\\]", ",")
+	                                .replaceAll("\\(([^\\]]+)\\)", ",")
+	                                .trim());
+	            }
+	        }
+
+	            for (int i = 0; i < lastKeyIndex; i++) {
+	                String key = keys.get(i).wholeOwnText()
+	                        .replace("\n", "")
+	                        .trim();
+	                String value = values.get(i).wholeText()
+	                        .replaceAll("\\[([^\\]]+)\\]", ",")
+	                        .replaceAll("\\(([^\\]]+)\\)", ",")
+	                        .trim();
+	                object.put(key, value);
+	            }
+	            object.put(keys.get(lastKeyIndex).wholeOwnText().replace("\n", "").trim(), lastValue);
+	    }
 		
 }

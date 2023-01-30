@@ -1,6 +1,7 @@
 [
     {
-        "list king": [
+        "period": "Hồng Bàng",
+        "kingList": [
             {
                 "Thụy hiệu": "Kinh Dương Vương,",
                 "Chân dung": "",
@@ -211,12 +212,11 @@
                 "Thế thứ": "",
                 "Miếu hiệu": "không có"
             }
-        ],
-        "name period": "Hồng Bàng"
+        ]
     },
     {
-        "period start": -257,
-        "list king": [
+        "period": "Nhà Thục",
+        "kingList": [
             {
                 "Thụy hiệu": "An Dương Vương,",
                 "Chân dung": "",
@@ -228,12 +228,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Nhà Thục",
-        "period end": -208
+        "time": {
+            "start": -257,
+            "end": -208
+        }
     },
     {
-        "period start": -204,
-        "list king": [
+        "period": "Nhà Triệu",
+        "kingList": [
             {
                 "Thụy hiệu": "Vũ Vương\nVũ Đế,",
                 "Chân dung": "",
@@ -285,12 +287,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Nhà Triệu",
-        "period end": -111
+        "time": {
+            "start": -204,
+            "end": -111
+        }
     },
     {
-        "period start": 40,
-        "list king": [
+        "period": "Trưng Nữ Vương",
+        "kingList": [
             {
                 "Thụy hiệu": "không có",
                 "Chân dung": "",
@@ -302,12 +306,14 @@
                 "Tôn hiệu": "Trinh Linh Chi Phu Nhân,"
             }
         ],
-        "name period": "Trưng Nữ Vương",
-        "period end": 43
+        "time": {
+            "start": 40,
+            "end": 43
+        }
     },
     {
-        "period start": 544,
-        "list king": [
+        "period": "Nhà Tiền Lý và Triệu Việt Vương",
+        "kingList": [
             {
                 "Thụy hiệu": "Nam Đế,\nNam Việt Đế,",
                 "Chân dung": "",
@@ -359,12 +365,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Tiền Lý và Triệu Việt Vương",
-        "period end": 603
+        "time": {
+            "start": 544,
+            "end": 603
+        }
     },
     {
-        "period start": 713,
-        "list king": [
+        "period": "Họ Mai",
+        "kingList": [
             {
                 "Thụy hiệu": "Đại Đế,\nHắc Đế,",
                 "Chân dung": "",
@@ -396,12 +404,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Họ Mai",
-        "period end": 723
+        "time": {
+            "start": 713,
+            "end": 723
+        }
     },
     {
-        "period start": 766,
-        "list king": [
+        "period": "Họ Phùng",
+        "kingList": [
             {
                 "Thủ lĩnh": "Phùng Hưng,",
                 "Thụy hiệu": "Bố Cái Đại Vương,",
@@ -423,12 +433,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Họ Phùng",
-        "period end": 791
+        "time": {
+            "start": 766,
+            "end": 791
+        }
     },
     {
-        "period start": 905,
-        "list king": [
+        "period": "Họ Khúc",
+        "kingList": [
             {
                 "Tiết độ sứ": "Khúc Tiên Chủ,",
                 "Thụy hiệu": "Tiên Vương",
@@ -460,12 +472,14 @@
                 "Tôn hiệu": "Hậu Chủ,"
             }
         ],
-        "name period": "Họ Khúc",
-        "period end": 923
+        "time": {
+            "start": 905,
+            "end": 923
+        }
     },
     {
-        "period start": 931,
-        "list king": [
+        "period": "Họ Dương",
+        "kingList": [
             {
                 "Tiết độ sứ": "Dương Chính Công,",
                 "Thụy hiệu": "không có",
@@ -477,12 +491,14 @@
                 "Tôn hiệu": "không có"
             }
         ],
-        "name period": "Họ Dương",
-        "period end": 937
+        "time": {
+            "start": 931,
+            "end": 937
+        }
     },
     {
-        "period start": 937,
-        "list king": [
+        "period": "Họ Kiều",
+        "kingList": [
             {
                 "Tiết độ sứ": "Kiều Công Tiễn,",
                 "Thụy hiệu": "không có",
@@ -494,12 +510,14 @@
                 "Tôn hiệu": "không có"
             }
         ],
-        "name period": "Họ Kiều",
-        "period end": 938
+        "time": {
+            "start": 937,
+            "end": 938
+        }
     },
     {
-        "period start": 939,
-        "list king": [
+        "period": "Nhà Ngô và Dương Tam Kha",
+        "kingList": [
             {
                 "Thụy hiệu": "không có",
                 "Chân dung": "",
@@ -551,12 +569,14 @@
                 "Tôn hiệu": "không có"
             }
         ],
-        "name period": "Nhà Ngô và Dương Tam Kha",
-        "period end": 966
+        "time": {
+            "start": 939,
+            "end": 966
+        }
     },
     {
-        "period start": 968,
-        "list king": [
+        "period": "Nhà Đinh",
+        "kingList": [
             {
                 "Thụy hiệu": "Tiên Hoàng Đế,\nĐại Thắng Minh Hoàng Đế",
                 "Chân dung": "",
@@ -578,12 +598,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Nhà Đinh",
-        "period end": 980
+        "time": {
+            "start": 968,
+            "end": 980
+        }
     },
     {
-        "period start": 980,
-        "list king": [
+        "period": "Nhà Tiền Lê",
+        "kingList": [
             {
                 "Thụy hiệu": "Đại Hành Hoàng Đế,\nMinh Càn Ứng Vận Thần Vũ Thăng Bình Chí Nhân Quảng Hiếu Hoàng đế",
                 "Chân dung": "",
@@ -615,12 +637,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Tiền Lê",
-        "period end": 1009
+        "time": {
+            "start": 980,
+            "end": 1009
+        }
     },
     {
-        "period start": 1009,
-        "list king": [
+        "period": "Nhà Lý",
+        "kingList": [
             {
                 "Thụy hiệu": "Thần Vũ Hoàng Đế,",
                 "Chân dung": "",
@@ -732,12 +756,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Lý",
-        "period end": 1225
+        "time": {
+            "start": 1009,
+            "end": 1225
+        }
     },
     {
-        "period start": 1225,
-        "list king": [
+        "period": "Nhà Trần",
+        "kingList": [
             {
                 "Thụy hiệu": "Thống Thiên Ngự Cực Long Công Hậu Đức Hiền Công Hựu Thuận Thánh Văn Thần Vũ Hiếu Nguyên Hoàng Đế,",
                 "Chân dung": "",
@@ -869,12 +895,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Trần",
-        "period end": 1400
+        "time": {
+            "start": 1225,
+            "end": 1400
+        }
     },
     {
-        "period start": 1400,
-        "list king": [
+        "period": "Nhà Hồ",
+        "kingList": [
             {
                 "Thụy hiệu": "Chương Hoàng",
                 "Chân dung": "",
@@ -896,12 +924,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Hồ",
-        "period end": 1407
+        "time": {
+            "start": 1400,
+            "end": 1407
+        }
     },
     {
-        "period start": 1407,
-        "list king": [
+        "period": "Nhà Hậu Trần",
+        "kingList": [
             {
                 "Thụy hiệu": "không có",
                 "Chân dung": "",
@@ -933,12 +963,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Nhà Hậu Trần",
-        "period end": 1414
+        "time": {
+            "start": 1407,
+            "end": 1414
+        }
     },
     {
-        "period start": 1418,
-        "list king": [
+        "period": "Khởi nghĩa Lam Sơn",
+        "kingList": [
             {
                 "Thụy hiệu": "không có",
                 "Chân dung": "",
@@ -949,12 +981,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Khởi nghĩa Lam Sơn",
-        "period end": 1427
+        "time": {
+            "start": 1418,
+            "end": 1427
+        }
     },
     {
-        "period start": 1428,
-        "list king": [
+        "period": "Nhà Hậu Lê \u2013 giai đoạn Lê sơ",
+        "kingList": [
             {
                 "Chân dung": "",
                 "Vua": "Lê Thái Tổ,",
@@ -1096,12 +1130,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nhà Hậu Lê \u2013 giai đoạn Lê sơ",
-        "period end": 1527
+        "time": {
+            "start": 1428,
+            "end": 1527
+        }
     },
     {
-        "period start": 1527,
-        "list king": [
+        "period": "Bắc triều \u2013 Nhà Mạc",
+        "kingList": [
             {
                 "Thụy hiệu": "Nhân Minh Cao Hoàng Đế,",
                 "Chân dung": "",
@@ -1233,12 +1269,14 @@
                 "Miếu hiệu": "Đức Tông,"
             }
         ],
-        "name period": "Bắc triều \u2013 Nhà Mạc",
-        "period end": 1592
+        "time": {
+            "start": 1527,
+            "end": 1592
+        }
     },
     {
-        "period start": 1533,
-        "list king": [
+        "period": "Nam triều \u2013 Nhà Hậu Lê \u2013 giai đoạn Lê Trung hưng",
+        "kingList": [
             {
                 "Thụy hiệu": "Dụ Hoàng Đế,",
                 "Chân dung": "",
@@ -1410,12 +1448,14 @@
                 "Miếu hiệu": "không có,"
             }
         ],
-        "name period": "Nam triều \u2013 Nhà Hậu Lê \u2013 giai đoạn Lê Trung hưng",
-        "period end": 1789
+        "time": {
+            "start": 1533,
+            "end": 1789
+        }
     },
     {
-        "period start": 1545,
-        "list king": [
+        "period": "Đàng Ngoài - Chúa Trịnh",
+        "kingList": [
             {
                 "Chân dung": "",
                 "Niên hiệu": "không có,",
@@ -1547,12 +1587,14 @@
                 "Tôn hiệu": "Huệ Định Công,"
             }
         ],
-        "name period": "Đàng Ngoài - Chúa Trịnh",
-        "period end": 1787
+        "time": {
+            "start": 1545,
+            "end": 1787
+        }
     },
     {
-        "period start": 1558,
-        "list king": [
+        "period": "Đàng Trong - Chúa Nguyễn",
+        "kingList": [
             {
                 "Thụy hiệu": "Triệu Cơ Tùy Thống Khâm Minh Cung Ý Cần Nghĩa Đạt Lý Hiển Ứng Chiêu Hựu Diệu Linh Gia Dụ Hoàng Đế,,",
                 "Chân dung": "",
@@ -1654,12 +1696,14 @@
                 "Chúa": "Tân Chính Vương,"
             }
         ],
-        "name period": "Đàng Trong - Chúa Nguyễn",
-        "period end": 1777
+        "time": {
+            "start": 1558,
+            "end": 1777
+        }
     },
     {
-        "period start": 1778,
-        "list king": [
+        "period": "Nhà Tây Sơn",
+        "kingList": [
             {
                 "Thụy hiệu": "Minh Đức Hoàng Đế,",
                 "Chân dung": "",
@@ -1691,12 +1735,14 @@
                 "Miếu hiệu": "không có"
             }
         ],
-        "name period": "Nhà Tây Sơn",
-        "period end": 1802
+        "time": {
+            "start": 1778,
+            "end": 1802
+        }
     },
     {
-        "period start": 1802,
-        "list king": [
+        "period": "Nhà Nguyễn",
+        "kingList": [
             {
                 "Thụy hiệu": "Khai Thiên Hoằng Đạo Lập Kỷ Thùy Thống Thần Văn Thánh Vũ Tuấn Đức Long Công Chí Nhân Đại Hiếu Cao Hoàng Đế,",
                 "Chân dung": "",
@@ -1828,7 +1874,9 @@
                 "Hoàng đế": "Bảo Đại,"
             }
         ],
-        "name period": "Nhà Nguyễn",
-        "period end": 1945
+        "time": {
+            "start": 1802,
+            "end": 1945
+        }
     }
 ]
