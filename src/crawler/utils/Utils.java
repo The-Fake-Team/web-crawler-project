@@ -57,7 +57,7 @@ public final class Utils {
 		    Hashtable<Integer, ArrayList<String>> figureNameAndId = new Hashtable<Integer, ArrayList<String>>();
 			
 			JSONParser jsonParser = new JSONParser();
-			FileReader myReader = new FileReader("historicalFigureWithId.json");
+			FileReader myReader = new FileReader("historicalFigure.json");
 			
 			Object obj = jsonParser.parse(myReader);	
 			
