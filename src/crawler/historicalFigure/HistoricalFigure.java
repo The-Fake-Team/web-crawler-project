@@ -60,16 +60,20 @@ public class HistoricalFigure implements Runnable{
 					
 					for (int j = 0; j < periodList.length; j ++) {
 						JSONObject period = new JSONObject();
+						JSONObject duration = new JSONObject();
 						
 						period.put("name", periodList[j].replaceAll("\\(.+", "").trim());
 						
 						for (int k = 0; k < allTimeStamps.length; k++) {
 			        		
 			        		if (periodSummnary.contains(allTimeStamps[k])) {
-								period.put("start", allNormalizedTimeStamps[k][0]);
-								period.put("end", allNormalizedTimeStamps[k][1]);
+			        			duration.put("start", allNormalizedTimeStamps[k][0]);
+			        			duration.put("end", allNormalizedTimeStamps[k][1]);
 			        		}
+			        		
+			        		period.put("duration", duration);
 			        	}
+						
 						periods.put(period);
 						historicalfigure.put("periods", periods );
 					}
@@ -103,7 +107,7 @@ public class HistoricalFigure implements Runnable{
 			if (i == rows.size() - 1) {
 				Element descripiton = row.select("td").get(0);
 				
-				historicalfigure.put("descripiton", descripiton.text());
+				historicalfigure.put("description", descripiton.text());
 			}
 		}
 		
