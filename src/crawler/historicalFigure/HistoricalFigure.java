@@ -101,17 +101,33 @@ public class HistoricalFigure implements Runnable{
 				}
 				
 				if (key.text().equals("Năm sinh")) {
-//					historicalfigure.put("yearOfBirth", value.text().trim()); // remove "-"
-					historicalfigure.put("yearOfBirth", extractYearOfBirth(value.text().trim()));
+					String birthAndDeadYears = value.text().trim();
+					
+					String[] years = birthAndDeadYears.split("-");
+					
+					if (years[0].replaceAll("[^0-9]", "").trim().length() > 0 && years[1].replaceAll("[^0-9]", "").trim().length() > 0 ) {
+						
+						int birthYear = Integer.parseInt(years[0].replaceAll("[^0-9]", ""));
+						int deathYear = Integer.parseInt(years[1].replaceAll("[^0-9]", ""));
+						
+						historicalfigure.put("birthYear", birthYear);
+						historicalfigure.put("deathYear", deathYear);
+						
+					} else if (years[0].replaceAll("[^0-9]", "").trim().length() > 0 && years[1].replaceAll("[^0-9]", "").trim().length() == 0 ) {
+						
+						int birthYear =  Integer.parseInt(years[0].replaceAll("[^0-9]", ""));
+						
+						historicalfigure.put("birthYear", birthYear);
+						historicalfigure.put("deathYear",  JSONObject.NULL);
+					} else {
+						
+						historicalfigure.put("birthYear",  JSONObject.NULL);
+						historicalfigure.put("deathYear",  JSONObject.NULL);
+					}
 				}
 				
 				
 				// check for empty fields
-				
-				if (!historicalfigure.has("yearOfBirth")) {
-					historicalfigure.put("yearOfBirth", "");
-				}
-				
 				if (!historicalfigure.has("otherName")) {
 					historicalfigure.put("otherName", "");
 				}
