@@ -54,24 +54,24 @@ public class HistoricalFigure implements Runnable{
 				Element value = row.select("td").get(1);
 				
 				if (key.text().equals("Thời kì")) {
-					JSONArray eras = new JSONArray();
-					String eraSummary = value.text();
-					String[] eraList = eraSummary.substring(1).trim().split("\\) - ");
+					JSONArray periods = new JSONArray();
+					String periodSummnary = value.text();
+					String[] periodList = periodSummnary.substring(1).trim().split("\\) - ");
 					
-					for (int j = 0; j < eraList.length; j ++) {
-						JSONObject era = new JSONObject();
+					for (int j = 0; j < periodList.length; j ++) {
+						JSONObject period = new JSONObject();
 						
-						era.put("name", eraList[j].replaceAll("\\(.+", "").trim());
+						period.put("name", periodList[j].replaceAll("\\(.+", "").trim());
 						
 						for (int k = 0; k < allTimeStamps.length; k++) {
 			        		
-			        		if (eraSummary.contains(allTimeStamps[k])) {
-								era.put("start", allNormalizedTimeStamps[k][0]);
-								era.put("end", allNormalizedTimeStamps[k][1]);
+			        		if (periodSummnary.contains(allTimeStamps[k])) {
+								period.put("start", allNormalizedTimeStamps[k][0]);
+								period.put("end", allNormalizedTimeStamps[k][1]);
 			        		}
 			        	}
-						eras.put(era);
-						historicalfigure.put("eras", eras );
+						periods.put(period);
+						historicalfigure.put("periods", periods );
 					}
 				}
 				
