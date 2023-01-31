@@ -51,15 +51,29 @@ public class King implements Runnable{
 
                 for (Element value : tableValueList) {
                 	
-                    JSONObject king = new JSONObject();
-                    
-                    Elements kingValueList = value.select("td");
-                    
+                    JSONObject king = new JSONObject();                   
+                    Elements kingValueList = value.select("td");                    
                     putToObject(king, tableKeyList, kingValueList);
                     
+                    // check for empty fields
+                    String[] optionalFields = {"Thụy hiệu", "Vua", "Thế thứ", "Miếu hiệu", "Hoàng đế", "Thủ lĩnh", "Tiết độ sứ", "Tôn hiệu", "Tôn hiệu hoặc Thụy hiệu", "Tước hiệu"};
+                    for (String field: optionalFields) {
+	    				if (!king.has(field)) {
+	    					if (field.equals("Thụy hiệu") || field.equals("Miếu hiệu") || field.equals("Tôn hiệu")) {
+	    						king.put(field, "không có");
+	    					}
+	    					else if (field.equals("Tôn hiệu hoặc Thụy hiệu")) {
+	    						king.put(field, "không có,");
+	    					}
+	    					else {
+	    						king.put(field, "");
+	    					}
+	    				}
+                    }
+                    
                     kingList.put(king);
-                }
-
+                }                
+                
                 eraWithKingList.put("kingList", kingList);
                     
                 String[] periodArray = Utils.extractInt(titles.get(indexTable).text()).split("\\s+");
@@ -87,7 +101,7 @@ public class King implements Runnable{
                 }
 
                 eraWithKingList.put("period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
-
+                
                 System.out.println("Get table " + (indexTable) + " successfully!!");
                 indexTable++;
                 ErasWithKingList.put(eraWithKingList);

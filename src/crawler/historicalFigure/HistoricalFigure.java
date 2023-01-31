@@ -132,6 +132,11 @@ public class HistoricalFigure implements Runnable{
 					historicalfigure.put("otherName", "");
 				}
 				
+				if (!historicalfigure.has("Năm sinh")) {
+					historicalfigure.put("birthYear",  JSONObject.NULL);
+					historicalfigure.put("deathYear",  JSONObject.NULL);
+				}
+				
 			};
 			
 			if (i == rows.size() - 1) {
@@ -162,7 +167,7 @@ public class HistoricalFigure implements Runnable{
 		    
 	        myReader.close();
 	        
-	        File file = new File("src\\data\\historicalFigure2.json");
+	        File file = new File("src\\data\\historicalFigure.json");
             file.getParentFile().mkdirs();
             FileWriter myWriter = new FileWriter(file);
 
