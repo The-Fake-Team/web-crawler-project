@@ -90,9 +90,18 @@ public class HistoricalSite implements Runnable{
                 		System.out.println("Link is unavailable");
                 	}
                 } else {
-                	historicalSite.put("description", "");
+                	historicalSite.put("summary", "");
                 	historicalSite.put("detail", "");
                 }
+                
+                // check for empty fields
+				if (!historicalSite.has("summary")) {
+					historicalSite.put("summary", "");
+				}
+				
+				if (!historicalSite.has("detail")) {
+					historicalSite.put("detail", "");
+				}
                 
                 historicalSiteList.put(historicalSite);
             }

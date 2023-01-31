@@ -1,3 +1,4 @@
 bin/
 crawler/bin/
 *.classpath
+.classpath

@@ -101,8 +101,7 @@ public class Festival implements Runnable{
             myWriter.write(festivalList.toString());
             
             myWriter.close();
-		} catch (IOException | ParseException e1) {
-			// TODO Auto-generated catch block
+		} catch (IOException | ParseException | JSONException e1) {
 			e1.printStackTrace();
 		}
 	}
