@@ -17,6 +17,19 @@ public class HistoricalFigure implements Runnable{
 	
 	private static int figureId = 1;
 	
+	public static JSONObject extractYearOfBirth(String yearOfBirth) throws JSONException {
+		
+		JSONObject year = new JSONObject();
+		String[] yearsArray = yearOfBirth.split("-");
+		if (yearsArray.length==2) {
+			year.put("born", yearsArray[0].replaceAll("[^0-9]", ""));
+			year.put("dead", yearsArray[1].replaceAll("[^0-9]", ""));
+			return year;
+		}
+		System.out.println("Error");
+		return null;
+	}
+	
 	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
 		
 		Document doc = Jsoup
@@ -84,7 +97,8 @@ public class HistoricalFigure implements Runnable{
 				}
 				
 				if (key.text().equals("Năm sinh")) {
-					historicalfigure.put("yearOfBirth", value.text().trim()); // remove "-"
+//					historicalfigure.put("yearOfBirth", value.text().trim()); // remove "-"
+					historicalfigure.put("yearOfBirth", extractYearOfBirth(value.text().trim()));
 				}
 				
 				
@@ -128,7 +142,7 @@ public class HistoricalFigure implements Runnable{
 		    
 	        myReader.close();
 	        
-	        File file = new File("src\\data\\historicalFigure.json");
+	        File file = new File("src\\data\\historicalFigure2.json");
             file.getParentFile().mkdirs();
             FileWriter myWriter = new FileWriter(file);
 
