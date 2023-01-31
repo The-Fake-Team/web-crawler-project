@@ -83,17 +83,17 @@ public class HistoricEvent implements Runnable{
 					erasYears.add(null);
 				}
 				
-				} else {
+			} else {
 					
-					if (startEndTimeArray[0].trim().length() > 0) {						
-						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
-						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
-					} else {
-						erasYears.add(null);
-						erasYears.add(null);
-					}
+				if (startEndTimeArray[0].trim().length() > 0) {						
+					erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+					erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+				} else {
+					erasYears.add(null);
+					erasYears.add(null);
 				}
 			}
+		}
 			
 			historicEvent.put("duration", createEraObject(erasYears));
 		
