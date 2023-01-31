@@ -13,7 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class HistoricalFigure {
+public class HistoricalFigure implements Runnable{
 	
 	private static int figureId = 1;
 	
@@ -109,30 +109,34 @@ public class HistoricalFigure {
 		
 		return historicalfigure;		
 	}
-
-	public static void main(String[] args) throws JSONException {
+	
+	@Override
+	public void run() {
 		
 		try {
-			
 			JSONArray figureList = new JSONArray();
 			
-			File myFile = new File("historicalFigureUrls.txt");
+			File myFile = new File("src\\crawler\\historicalFigure\\historicalFigureUrls.txt");
 		    Scanner myReader = new Scanner(myFile);
 		    
 		    while (myReader.hasNextLine()) {
 		        String url = myReader.nextLine();
 		        
 		        figureList.put(infoFromLink(url));
+		        System.out.println(url);
 		     }
 		    
 	        myReader.close();
 	        
-	        FileWriter file = new FileWriter("historicalFigure.json");
-            file.write(figureList.toString());
+	        File file = new File("src\\data\\historicalFigure.json");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
+
+            myWriter.write(figureList.toString());
             
-            file.close();
+            myWriter.close();
 	        
-	    } catch (IOException e) {
+	    } catch (IOException | JSONException e) {
 	    	
 	    	e.printStackTrace();
 	    }

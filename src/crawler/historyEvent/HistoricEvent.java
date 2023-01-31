@@ -20,7 +20,7 @@ import org.jsoup.select.Elements;
 
 import crawler.utils.Utils;
 
-public class HistoricEvent {
+public class HistoricEvent implements Runnable{
 	
 	private static int eventId = 1;
 	
@@ -176,13 +176,14 @@ public class HistoricEvent {
 	}
 
     @SuppressWarnings("unchecked")
-	public static void main(String[] args) throws JSONException, ParseException, IOException {
+	public void run() {
 		
-    	Hashtable<Integer, ArrayList<String>> figureNameAndId = Utils.getSimpleHistoricalFigureList();
-
+    	try {
+    		Hashtable<Integer, ArrayList<String>> figureNameAndId = Utils.getSimpleHistoricalFigureList();
+    	
 			JSONArray historicEventList = new JSONArray();
 
-			File historicEventUrlsFile = new File("historicEventUrls.txt");
+			File historicEventUrlsFile = new File("src\\crawler\\historyEvent\\historicEventUrls.txt");
 		    Scanner myReader = new Scanner(historicEventUrlsFile);
 		    
 		    while (myReader.hasNextLine()) {
@@ -190,7 +191,6 @@ public class HistoricEvent {
 		        String url = myReader.nextLine();
 		        try {
 		        	historicEventList.add(infoFromLink(url, figureNameAndId));
-		        	System.out.println(url);
 		        }
 		        catch (IOException e) {
 		        	System.out.println(url + " has an error");
@@ -200,10 +200,17 @@ public class HistoricEvent {
 		    
 	        myReader.close();
 
-	        FileWriter file = new FileWriter("historicalEvent.json");
-            file.write(historicEventList.toString());
+	        File file = new File("src\\data\\historicalEvent.json");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
             
-            file.close();
+	        myWriter.write(historicEventList.toString());
+            
+	        myWriter.close();
+            
+    	} catch (JSONException | ParseException| IOException e) {
+    		e.printStackTrace();
+    	}
 	        
 	}
 }

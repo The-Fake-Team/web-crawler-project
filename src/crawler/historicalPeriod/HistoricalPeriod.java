@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -13,9 +14,10 @@ import org.json.JSONException;
 
 import crawler.utils.Utils;
 
-public class HistoricalPeriod {
+public class HistoricalPeriod implements Runnable{
 	
-	public static void main (String[] args) throws JSONException {
+	@Override
+	public void run () {
 				
         String url = "https://vansu.vn/viet-nam/nien-bieu-lich-su";
         Document doc = null;
@@ -62,11 +64,16 @@ public class HistoricalPeriod {
                 historicalPeriodList.put(historicalPeriod);
             }
 
-            FileWriter myWriter = new FileWriter("period.json");
+            
+            File file = new File("src\\data\\period.json");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
+
             myWriter.write(historicalPeriodList.toString());
 
             myWriter.close();
-        } catch (IOException e) {
+            
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
 	}

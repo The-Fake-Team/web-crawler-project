@@ -1,5 +1,6 @@
 package crawler.festival;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +17,13 @@ import org.jsoup.select.Elements;
 
 import crawler.utils.Utils;
 
-public class Festival {
-	
-	public static void main(String[] args) throws JSONException, IOException, ParseException {
+public class Festival implements Runnable{
+
+	@Override
+	public void run() {
 		
+		try {
+			
 		Hashtable<Integer, ArrayList<String>> figureNameAndId = Utils.getSimpleHistoricalFigureList();
 				
 		String url = "https://vi.wikipedia.org/wiki/L%E1%BB%85_h%E1%BB%99i_Vi%E1%BB%87t_Nam";
@@ -87,14 +91,21 @@ public class Festival {
 	        festival.put("relatedCharacters", relatedCharacters.text());
 	        festival.put("relatedFiguresId", relatedFiguresId);
 
-	        
 	        festivalList.put(festival);    
         }
+         
+	        File file = new File("src\\data\\festival.json");
+	        file.getParentFile().mkdirs();
+	        FileWriter myWriter = new FileWriter(file);
+
+            myWriter.write(festivalList.toString());
             
-            FileWriter file = new FileWriter("festival.json");
-            file.write(festivalList.toString());
-            
-            file.close();
+            myWriter.close();
+		} catch (IOException | ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
+
 
 }

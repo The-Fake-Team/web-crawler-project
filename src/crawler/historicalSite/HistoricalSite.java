@@ -1,5 +1,6 @@
 package crawler.historicalSite;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,9 +12,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class HistoricalSite {
+public class HistoricalSite implements Runnable{
 
-	public static void main(String[] args) throws JSONException {
+	@Override
+	public void run() {
 		
 		String url = "http://dsvh.gov.vn/danh-muc-di-tich-quoc-gia-dac-biet-1752"; 
         Document allSitedoc = null;
@@ -95,12 +97,16 @@ public class HistoricalSite {
                 historicalSiteList.put(historicalSite);
             }
             
-            FileWriter file = new FileWriter("historicalSite.json");
-            file.write(historicalSiteList.toString());
+            File file = new File("src\\data\\historicalSite.json");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
+                        
             
-            file.close();
+            myWriter.write(historicalSiteList.toString());
+            
+            myWriter.close();
 
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         } 
 
