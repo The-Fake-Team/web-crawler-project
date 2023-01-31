@@ -45,6 +45,8 @@ public class HistoricalPeriod implements Runnable{
                 
                 String[] startEnd = Utils.extractInt(historicalPeriodTitle).split("\\s+"); // get start and end time
                 
+                JSONObject duration = new JSONObject();
+                
                 if (startEnd.length > 1 && i < historicalPeriods.size()) {
                 	
                     String[] nextPeriodStartEnd = Utils.extractInt(historicalPeriods.get(i+1).text()).split("\\s+");
@@ -53,12 +55,17 @@ public class HistoricalPeriod implements Runnable{
                     int end = Integer.parseInt(startEnd[1]);
                     int nextPeriodStart = Integer.parseInt(nextPeriodStartEnd[0]);
                     
-                    historicalPeriod.put("start", start > end ? 0-start : start);
-                    historicalPeriod.put("end", start > end && end >  nextPeriodStart  ? 0-end : end);
                     
+                    duration.put("start", start > end ? 0-start : start);
+                    duration.put("end", start > end && end >  nextPeriodStart  ? 0-end : end);
+                    
+                    historicalPeriod.put("duration", duration);
                 } else{
-                	historicalPeriod.put("start",startEnd[0] == ""?JSONObject.NULL: Integer.parseInt(startEnd[0]));
-                	historicalPeriod.put("end", JSONObject.NULL);
+                	
+                	duration.put("start",startEnd[0] == ""?JSONObject.NULL: Integer.parseInt(startEnd[0]));
+                	duration.put("end", JSONObject.NULL);
+                	
+                	historicalPeriod.put("duration", duration);
                 }
                 
                 historicalPeriodList.put(historicalPeriod);

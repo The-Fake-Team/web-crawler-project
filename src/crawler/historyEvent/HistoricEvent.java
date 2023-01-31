@@ -95,7 +95,7 @@ public class HistoricEvent implements Runnable{
 				}
 			}
 			
-			historicEvent.put("time", createEraObject(erasYears));
+			historicEvent.put("duration", createEraObject(erasYears));
 		
 		for(int i = 1; i < listElement.size(); i++) {
 			if(i == 1) {
