@@ -155,19 +155,19 @@ public class HistoricEvent implements Runnable{
 					historicEvent.put("relatedFigures", relatedFigures);
 					historicEvent.put("relatedFiguresId", relatedFiguresId);
 				} else {
-					String relatedSites = "";
+					String relatedPlaces = "";
 					
 					for (int j = 0; j < values.size(); j ++) {
 						if (j < values.size() - 1) {    							
-							relatedSites += values.get(j).text() + ", ";
+							relatedPlaces += values.get(j).text() + ", ";
 						}
 						
 						if (j == values.size() - 1) {
-							relatedSites += values.get(j).text();
+							relatedPlaces += values.get(j).text();
 						}
 					}
 					
-					historicEvent.put("relatedSites", relatedSites);    				
+					historicEvent.put("relatedPlaces", relatedPlaces);    				
 				}
 			}
 		}
