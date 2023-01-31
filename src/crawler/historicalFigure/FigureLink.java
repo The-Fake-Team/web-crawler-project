@@ -1,5 +1,6 @@
 package crawler.historicalFigure;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,9 +9,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class FigureLink {
+public class FigureLink implements Runnable{
 
-	public static void main(String[] args) {
+	@Override
+	public void run() {
 		String url = "https://vansu.vn/viet-nam/viet-nam-nhan-vat";
 		Document doc = null;
 		String allLink = "";
@@ -36,8 +38,13 @@ public class FigureLink {
 	                	                		
 				}
 			}
-			FileWriter myWriter = new FileWriter("link_nhan_vat.txt");
-			myWriter.write(allLink);
+			
+			
+            File file = new File("src\\crawler\\historicalFigure\\historicalFigureUrls.txt");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
+            myWriter.write(allLink);
+            
 			myWriter.close();
 		} catch (IOException e) {
             e.printStackTrace();

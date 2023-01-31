@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -13,13 +14,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import crawler.utils.Utils;
-public class King {
+public class King implements Runnable{
 
-	public static void main(String[] args) throws JSONException, IOException {
+	@Override
+	public void run() {
 		
         String url = "https://vi.wikipedia.org/wiki/Vua_Việt_Nam";
         Document doc = null;
         
+        try {
+        	
         doc = Jsoup
                 .connect(url)
                 .userAgent("Jsoup client")
@@ -90,10 +94,17 @@ public class King {
             } 
         }
 
-        FileWriter fwk = new FileWriter("king.json");
-        fwk.write(ErasWithKingList.toString());
+        File file = new File("src\\data\\king.json");
+        file.getParentFile().mkdirs();
+        FileWriter myWriter = new FileWriter(file);        
         
-        fwk.close();
+        myWriter.write(ErasWithKingList.toString());
+        
+        myWriter.close();
+        
+        } catch (JSONException | IOException e) {
+        	e.printStackTrace();
+        }
 	}
 	
 	 public static void putToObject (JSONObject object, Elements keys, Elements values) throws JSONException {

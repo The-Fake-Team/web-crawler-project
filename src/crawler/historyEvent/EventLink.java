@@ -1,5 +1,6 @@
 package crawler.historyEvent;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,9 +9,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class EventLink {
+public class EventLink implements Runnable{
 	
-    public static void main(String[] args) throws Exception {
+	@Override
+    public void run() {
     	
         String historicEvenstUrl = "https://thuvienlichsu.com/su-kien";
         String allIndividualEventUrls = "";
@@ -32,9 +34,13 @@ public class EventLink {
                     allIndividualEventUrls += eventUrl + "\n";
                 }
             }
-	        System.out.print(allIndividualEventUrls);
-
-            FileWriter myWriter = new FileWriter("historicEventUrls.txt");
+            
+            
+            File file = new File("src\\crawler\\historyEvent\\historicEventUrls.txt");
+            file.getParentFile().mkdirs();
+            FileWriter myWriter = new FileWriter(file);
+            
+            System.out.println(myWriter);
             myWriter.write(allIndividualEventUrls);
             myWriter.close();
             
