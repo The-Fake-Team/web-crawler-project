@@ -171,6 +171,18 @@ public class HistoricEvent implements Runnable{
 				}
 			}
 		}
+		
+		// check for empty fields
+		if (!historicEvent.containsKey("relatedFigures")) {
+			
+			historicEvent.put("relatedFigures", "");
+			historicEvent.put("relatedFiguresId", new ArrayList<Integer>());
+		}
+
+		if (!historicEvent.containsKey("relatedPlaces")) {
+			
+			historicEvent.put("relatedPlaces", "");
+		}
     		
     	return historicEvent;
 	}

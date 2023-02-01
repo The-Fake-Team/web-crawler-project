@@ -16,9 +16,7 @@ public class Crawler {
 		t.start();
 	}
 
-
 	public static void getHistoricalFiguresUrl () {
-		
 		FigureLink figureLink = new FigureLink();
 		
 		Thread linkt = new Thread(figureLink);
@@ -33,7 +31,6 @@ public class Crawler {
 	}
 	
 	public static void crawlHistoricalFigure () {
-				
 		HistoricalFigure historicalFigure = new HistoricalFigure();
 		
 		Thread t1 = new Thread(historicalFigure);
@@ -87,7 +84,6 @@ public class Crawler {
 	}
 	
 	public static void crawlKing () {
-		
 		King king = new King();
 		
 		Thread t3 = new Thread(king);
