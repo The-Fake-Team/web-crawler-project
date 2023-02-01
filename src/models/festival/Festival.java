@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import models.person.Person;
-
-public class Festival {
+public class Festival<T> {
+	
     private String name;
     private Date date;
     private String place;
     private String firstHeld;
-    private List<Person> relatedCharacters = new ArrayList<Person>();
+    private List<T> relatedCharacters = new ArrayList<T>();
+    
     public Festival() {
+    	
     }
+    
     public Festival(String name, Date date, String place, String firstHeld) {
         this.name = name;
-        this.date = date;
+        this.date = (Date) date.clone();
         this.place = place;
         this.firstHeld = firstHeld;
     }
@@ -33,12 +35,12 @@ public class Festival {
         this.place = place;
     }
     
-    public void setFirstHeldYear(String firstHeld) {
+    public void setFirstHeld(String firstHeld) {
         this.firstHeld = firstHeld;
     }
     
-    public void setRelatedCharacters(List<Person> RelatedCharacters) {
-        this.relatedCharacters.addAll(RelatedCharacters);
+    public void setRelatedCharacters(List<T> relatedCharacters) {
+        this.relatedCharacters = new ArrayList<T>(relatedCharacters);
     }
     
     public String getName() {
@@ -57,31 +59,18 @@ public class Festival {
         return this.firstHeld;
     }
     
-    public List<Person> getRelatedFigures() {
-    	List<Person> listReturn = new ArrayList<Person>();
+    public List<T> getRelatedCharacters() {
     	
-        for (Person character : this.relatedCharacters) {
-            listReturn.add((Person) character.clone());
-        }
- 
-        return listReturn;
+    	return this.relatedCharacters; //TODO: cloning
     }
     
-    public void addRelatedFigure(Person relatedCharacter) {
+    public void addRelatedFigure(T relatedCharacter) {
+    	
         relatedCharacters.add(relatedCharacter);
     }
     
-    public void removeRelatedFigure(Person relatedCharacter) {
-        relatedCharacters.remove(relatedCharacter);
-    }
-    
-    public void printRelatedCharacters() {
+    public void removeRelatedFigure(T relatedCharacter) {
     	
-        for (Person relatedCharacter : relatedCharacters) {
-        	
-            System.out.println(relatedCharacter);
-        }
-    }
-
-    
+        relatedCharacters.remove(relatedCharacter);
+    } 
 }
