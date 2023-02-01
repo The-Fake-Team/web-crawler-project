@@ -35,7 +35,7 @@ public class HistoricalFigure implements Runnable{
 		Document doc = Jsoup
 				        .connect(url)
 				        .userAgent("Jsoup client")
-				        .timeout(20000).get();
+				        .timeout(50000).get();
 		String[] allTimeStamps = {"2000 - 258", "257- 208", "207 trCN - 39", "40-43", "43-542",
 				 "544-602", "603-939", "905 - 938", "939-965", "968-980", "980-1009",
 				 "1010-1225", "1225-1400", "1400-1407", "1407-1413", "1414-1427", "1428-1527",
@@ -70,21 +70,24 @@ public class HistoricalFigure implements Runnable{
 					JSONArray periods = new JSONArray();
 					String periodSummnary = value.text();
 					String[] periodList = periodSummnary.substring(1).trim().split("\\) - ");
+
 					
 					for (int j = 0; j < periodList.length; j ++) {
 						JSONObject period = new JSONObject();
-						JSONObject duration = new JSONObject();
 						
 						period.put("name", periodList[j].replaceAll("\\(.+", "").trim());
-						
-						for (int k = 0; k < allTimeStamps.length; k++) {
-			        		
-			        		if (periodSummnary.contains(allTimeStamps[k])) {
+												
+						for (int k = 0; k < allTimeStamps.length; k++) {	        		
+			        		if (periodList[j].contains(allTimeStamps[k])) {
+			        			JSONObject duration = new JSONObject();
+			        			
 			        			duration.put("start", allNormalizedTimeStamps[k][0]);
 			        			duration.put("end", allNormalizedTimeStamps[k][1]);
+			        			
+			        			period.put("duration", duration);
 			        		}
-			        		
-			        		period.put("duration", duration);
+							
+			        				        		
 			        	}
 						
 						periods.put(period);
@@ -101,10 +104,6 @@ public class HistoricalFigure implements Runnable{
 				}
 				
 				if (key.text().equals("Năm sinh")) {
-<<<<<<< HEAD
-//					historicalfigure.put("yearOfBirth", value.text().trim()); // remove "-"
-					historicalfigure.put("yearOfBirth", extractYearOfBirth(value.text().trim()));
-=======
 					
 					String birthAndDeadYears = value.text().trim();
 					
@@ -129,7 +128,6 @@ public class HistoricalFigure implements Runnable{
 						historicalfigure.put("birthYear",  JSONObject.NULL);
 						historicalfigure.put("deathYear",  JSONObject.NULL);
 					}
->>>>>>> b31d38a6d7e71a9f8d6f1444ebe62188cbd9794c
 				}
 				
 				
@@ -163,12 +161,11 @@ public class HistoricalFigure implements Runnable{
 		        String url = myReader.nextLine();
 		        
 		        figureList.put(infoFromLink(url));
-		        System.out.println(url);
 		     }
 		    
 	        myReader.close();
 	        
-	        File file = new File("src\\data\\historicalFigure2.json");
+	        File file = new File("src\\data\\historicalFigure.json");
             file.getParentFile().mkdirs();
             FileWriter myWriter = new FileWriter(file);
 
