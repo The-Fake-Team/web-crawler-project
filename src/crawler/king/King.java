@@ -39,6 +39,10 @@ public class King implements Runnable{
 
         int indexTable = 0;
         
+        String[] optionalFields = {"Thụy hiệu", "Vua", "Thế thứ", "Miếu hiệu", "Hoàng đế", 
+        		"Thủ lĩnh", "Tiết độ sứ", "Tôn hiệu", "Tôn hiệu hoặc Thụy hiệu", 
+        "Tước hiệu"};
+        
         for(int i = 0; i < kingsTables.size(); i++) {
         	
             Elements tableKeyList = kingsTables.get(i).select("tr:nth-of-type(1)>th"); // get individual table's key list
@@ -56,6 +60,26 @@ public class King implements Runnable{
                     Elements kingValueList = value.select("td");
                     
                     putToObject(king, tableKeyList, kingValueList);
+                    
+                    // check for empty fields
+                    for (String field: optionalFields) {
+                    	
+	    				if (!king.has(field)) {
+	    					
+	    					if (field.equals("Thụy hiệu") || field.equals("Miếu hiệu") || field.equals("Tôn hiệu")) {
+	    						
+	    						king.put(field, "không có");
+	    					}
+	    					else if (field.equals("Tôn hiệu hoặc Thụy hiệu")) {
+	    						
+	    						king.put(field, "không có,");
+	    					}
+	    					else {
+	    						
+	    						king.put(field, "");
+	    					}
+	    				}
+                    }
                     
                     kingList.put(king);
                 }

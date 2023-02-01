@@ -83,17 +83,17 @@ public class HistoricEvent implements Runnable{
 					erasYears.add(null);
 				}
 				
-				} else {
+			} else {
 					
-					if (startEndTimeArray[0].trim().length() > 0) {						
-						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
-						erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
-					} else {
-						erasYears.add(null);
-						erasYears.add(null);
-					}
+				if (startEndTimeArray[0].trim().length() > 0) {						
+					erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+					erasYears.add(Integer.parseInt(startEndTimeArray[0].trim()));
+				} else {
+					erasYears.add(null);
+					erasYears.add(null);
 				}
 			}
+		}
 			
 			historicEvent.put("duration", createEraObject(erasYears));
 		
@@ -170,6 +170,18 @@ public class HistoricEvent implements Runnable{
 					historicEvent.put("relatedPlaces", relatedPlaces);    				
 				}
 			}
+		}
+		
+		// check for empty fields
+		if (!historicEvent.containsKey("relatedFigures")) {
+			
+			historicEvent.put("relatedFigures", "");
+			historicEvent.put("relatedFiguresId", new ArrayList<Integer>());
+		}
+
+		if (!historicEvent.containsKey("relatedPlaces")) {
+			
+			historicEvent.put("relatedPlaces", "");
 		}
     		
     	return historicEvent;
