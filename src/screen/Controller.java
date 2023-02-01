@@ -1,4 +1,4 @@
-package webCrawler;
+package screen;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXSnackbar;
