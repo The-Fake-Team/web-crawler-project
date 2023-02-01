@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Festival<T> {
 	
+	private int id;
     private String name;
     private Date date;
     private String place;
