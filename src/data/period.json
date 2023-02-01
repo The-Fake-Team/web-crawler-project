@@ -1,1 +1,170 @@
-[{"duration":{"start":null,"end":null},"name":"Thời tiền sử"},{"duration":{"start":-2000,"end":-258},"name":"Thời kỳ dựng nước"},{"duration":{"start":-257,"end":-208},"name":"Nhà Thục"},{"duration":{"start":-207,"end":39},"name":"Thời kỳ phong kiến phương Bắc đô hộ lần thứ nhất"},{"duration":{"start":40,"end":43},"name":"Trưng Nữ Vương"},{"duration":{"start":43,"end":542},"name":"Thời kỳ phong kiến phương Bắc đô hộ lần thứ hai"},{"duration":{"start":544,"end":602},"name":"Nhà tiền Lý và nhà Triệu"},{"duration":{"start":603,"end":939},"name":"Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba"},{"duration":{"start":905,"end":938},"name":"Thời kỳ xây nền tự chủ"},{"duration":{"start":939,"end":965},"name":"Nhà Ngô"},{"duration":{"start":968,"end":980},"name":"Nhà Đinh"},{"duration":{"start":980,"end":1009},"name":"Nhà Tiền Lê"},{"duration":{"start":1010,"end":1225},"name":"Nhà Lý"},{"duration":{"start":1225,"end":1400},"name":"Nhà Trần"},{"duration":{"start":1400,"end":1407},"name":"Nhà Hồ"},{"duration":{"start":1407,"end":1413},"name":"Hậu Trần"},{"duration":{"start":1414,"end":1427},"name":"Thời kỳ thuộc Minh"},{"duration":{"start":1428,"end":1527},"name":"Triều Lê Sơ"},{"duration":{"start":1527,"end":1592},"name":"Bắc Triều - Nam Triều"},{"duration":{"start":1533,"end":1788},"name":"Thời Trịnh - Nguyễn phân tranh"},{"duration":{"start":1778,"end":1802},"name":"Nhà Tây Sơn"},{"duration":{"start":1802,"end":1883},"name":"Nhà Nguyễn thời kỳ độc lập"},{"duration":{"start":1883,"end":1945},"name":"Thời kì Pháp đô hộ"},{"duration":{"start":1945,"end":null},"name":"Nước Việt Nam mới"}]
+[
+    {
+        "duration": {
+            "start": null,
+            "end": null
+        },
+        "name": "Thời tiền sử"
+    },
+    {
+        "duration": {
+            "start": -2000,
+            "end": -258
+        },
+        "name": "Thời kỳ dựng nước"
+    },
+    {
+        "duration": {
+            "start": -257,
+            "end": -208
+        },
+        "name": "Nhà Thục"
+    },
+    {
+        "duration": {
+            "start": -207,
+            "end": 39
+        },
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ nhất"
+    },
+    {
+        "duration": {
+            "start": 40,
+            "end": 43
+        },
+        "name": "Trưng Nữ Vương"
+    },
+    {
+        "duration": {
+            "start": 43,
+            "end": 542
+        },
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ hai"
+    },
+    {
+        "duration": {
+            "start": 544,
+            "end": 602
+        },
+        "name": "Nhà tiền Lý và nhà Triệu"
+    },
+    {
+        "duration": {
+            "start": 603,
+            "end": 939
+        },
+        "name": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba"
+    },
+    {
+        "duration": {
+            "start": 905,
+            "end": 938
+        },
+        "name": "Thời kỳ xây nền tự chủ"
+    },
+    {
+        "duration": {
+            "start": 939,
+            "end": 965
+        },
+        "name": "Nhà Ngô"
+    },
+    {
+        "duration": {
+            "start": 968,
+            "end": 980
+        },
+        "name": "Nhà Đinh"
+    },
+    {
+        "duration": {
+            "start": 980,
+            "end": 1009
+        },
+        "name": "Nhà Tiền Lê"
+    },
+    {
+        "duration": {
+            "start": 1010,
+            "end": 1225
+        },
+        "name": "Nhà Lý"
+    },
+    {
+        "duration": {
+            "start": 1225,
+            "end": 1400
+        },
+        "name": "Nhà Trần"
+    },
+    {
+        "duration": {
+            "start": 1400,
+            "end": 1407
+        },
+        "name": "Nhà Hồ"
+    },
+    {
+        "duration": {
+            "start": 1407,
+            "end": 1413
+        },
+        "name": "Hậu Trần"
+    },
+    {
+        "duration": {
+            "start": 1414,
+            "end": 1427
+        },
+        "name": "Thời kỳ thuộc Minh"
+    },
+    {
+        "duration": {
+            "start": 1428,
+            "end": 1527
+        },
+        "name": "Triều Lê Sơ"
+    },
+    {
+        "duration": {
+            "start": 1527,
+            "end": 1592
+        },
+        "name": "Bắc Triều - Nam Triều"
+    },
+    {
+        "duration": {
+            "start": 1533,
+            "end": 1788
+        },
+        "name": "Thời Trịnh - Nguyễn phân tranh"
+    },
+    {
+        "duration": {
+            "start": 1778,
+            "end": 1802
+        },
+        "name": "Nhà Tây Sơn"
+    },
+    {
+        "duration": {
+            "start": 1802,
+            "end": 1883
+        },
+        "name": "Nhà Nguyễn thời kỳ độc lập"
+    },
+    {
+        "duration": {
+            "start": 1883,
+            "end": 1945
+        },
+        "name": "Thời kì Pháp đô hộ"
+    },
+    {
+        "duration": {
+            "start": 1945,
+            "end": null
+        },
+        "name": "Nước Việt Nam mới"
+    }
+]

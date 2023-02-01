@@ -1,4 +1,4 @@
-package webCrawler;
+package screen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
