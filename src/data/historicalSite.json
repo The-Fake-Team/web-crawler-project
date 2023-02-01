@@ -16,9 +16,11 @@
         "recognitionDate": "12/8/2009"
     },
     {
+        "summary": "",
         "name": "Khu đền tháp Mỹ Sơn",
         "id": 3,
         "place": "Tỉnh Quảng Nam",
+        "detail": "",
         "recognitionDate": "12/8/2009"
     },
     {
@@ -62,8 +64,8 @@
         "recognitionDate": "12/8/2009"
     },
     {
+        "summary": "",
         "name": "Chiến trường Điện Biên Phủ",
-        "description": "",
         "id": 9,
         "place": "Tỉnh Điện Biên",
         "detail": "",
@@ -102,8 +104,8 @@
         "recognitionDate": "10/5/2012"
     },
     {
+        "summary": "",
         "name": "DTLS và KTNT Thành Nhà Hồ",
-        "description": "",
         "id": 14,
         "place": "Tỉnh Thanh Hóa",
         "detail": "",
@@ -230,9 +232,11 @@
         "recognitionDate": "27/9/2012"
     },
     {
+        "summary": "",
         "name": "DTKTNT Chùa Keo",
         "id": 30,
         "place": "Tỉnh Thái Bình",
+        "detail": "",
         "recognitionDate": "27/9/2012"
     },
     {
@@ -404,9 +408,11 @@
         "recognitionDate": "31/12/2014"
     },
     {
+        "summary": "",
         "name": "DTLS Địa điểm Chiến thắng Rạch Gầm - Xoài Mút",
         "id": 52,
         "place": "Tỉnh Tiền Giang",
+        "detail": "",
         "recognitionDate": "31/12/2014"
     },
     {
@@ -538,9 +544,11 @@
         "recognitionDate": "23/12/2015"
     },
     {
+        "summary": "",
         "name": "DTLS Đền thờ Nguyễn Bỉnh Khiêm",
         "id": 69,
         "place": "Thành phố Hải Phòng",
+        "detail": "",
         "recognitionDate": "23/12/2015"
     },
     {
@@ -600,8 +608,8 @@
         "recognitionDate": "22/12/2016"
     },
     {
+        "summary": "",
         "name": "DTLS và DLTC Quần thể An Phụ - Kính Chủ - Nhẫm Dương",
-        "description": "",
         "id": 77,
         "place": "Tỉnh Hải Dương",
         "detail": "",
@@ -696,96 +704,96 @@
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS Địa điểm về Cuộc khởi nghĩa Ba Tơ",
-        "description": "",
         "id": 89,
         "place": "Tỉnh Quảng Ngãi",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS Địa điểm Chiến thắng Biên giới năm 1950",
-        "description": "",
         "id": 90,
         "place": "Tỉnh Cao Bằng",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS Chùa Đọi Sơn",
-        "description": "",
         "id": 91,
         "place": "Tỉnh Hà Nam",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS Đền Xưa - Chùa Giám - Đền Bia",
-        "description": "",
         "id": 92,
         "place": "Tỉnh Hải Dương",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS Thành Điện Hải",
-        "description": "",
         "id": 93,
         "place": "Tỉnh Đà Nẵng",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTLS và DLTC Quần thể Hương Sơn",
-        "description": "",
         "id": 94,
         "place": "Tỉnh Hà Nội",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTKTNT Đình Hoành Sơn",
-        "description": "",
         "id": 95,
         "place": "Tỉnh Nghệ An",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTKTNT Đình Chèm",
-        "description": "",
         "id": 96,
         "place": "Thành phố Hà Nội",
         "detail": "",
         "recognitionDate": "25/12/2017"
     },
     {
+        "summary": "",
         "name": "DTKTNT Tháp Nhạn",
-        "description": "",
         "id": 97,
         "place": "Tỉnh Phú Yên",
         "detail": "",
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DTKTNT Chùa Thái Lạc",
-        "description": "",
         "id": 98,
         "place": "Tỉnh Hưng Yên",
         "detail": "",
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DTKTNT Đền thờ Lê Hoàn",
-        "description": "",
         "id": 99,
         "place": "Tỉnh Thanh Hóa",
         "detail": "",
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DTKTNT Đình Tường Phiêu",
-        "description": "",
         "id": 100,
         "place": "Thành phố Hà Nội",
         "detail": "",
@@ -816,24 +824,24 @@
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DTLS Nhà đày Buôn Mê Thuột",
-        "description": "",
         "id": 104,
         "place": "Tỉnh Đắk Lắk",
         "detail": "",
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DTLS Đường Trường Sơn - Đường Hồ Chí Minh (bổ sung thêm 09 điểm di tích)",
-        "description": "",
         "id": 105,
         "place": "",
         "detail": "",
         "recognitionDate": "24/12/2018"
     },
     {
+        "summary": "",
         "name": "DLTC Ngũ Hành Sơn",
-        "description": "",
         "id": 106,
         "place": "Thành phố Đà Nẵng",
         "detail": "",
