@@ -1,13 +1,9 @@
-package models.HistoricEvent;
+package models.historicEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.HistoricalFigure.*;
-import models.HistoricalPeriod.HistoricalPeriod;
 import models.duration.Duration;
 
-import java.util.Date;
-import java.time.LocalDate;
 
 public class HistoricEvent<T> {
 	
@@ -16,7 +12,7 @@ public class HistoricEvent<T> {
     private String references;
     private String description;
     private String relatedPlaces;
-    private ArrayList<T> RelatedFigures = new ArrayList<T>();
+    private List<T> relatedFigures = new ArrayList<T>();
 
     public HistoricEvent(String name, Integer start, Integer end, String references, String description, String relatedPlaces) {
         this.name = name;
@@ -30,60 +26,56 @@ public class HistoricEvent<T> {
         this.name = name;
     }
 
-    public void setDuration(int startTime) {
-        this.StartTime = StartTime;
+    public void setDuration(int start, int end) {
+        this.duration = new Duration(start, end);
+    }
+    
+    public void setDuration(Duration duration) throws CloneNotSupportedException {
+        this.duration = (Duration) duration.clone();
+    }
+    
+    public void setReference(String references) {
+        this.references = references;
     }
 
-    public void setEndTime(int EndTime) {
-        this.EndTime = EndTime;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setReference(String Reference) {
-        this.Reference = Reference;
-    }
-
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-
-    public void setRelatedFigures(ArrayList<T> RelatedFigures) {
-        this.RelatedFigures = RelatedFigures;
+    public void setRelatedFigures(ArrayList<T> relatedFigures) {
+        this.relatedFigures = relatedFigures;
     }
 
     public String getName() {
-        return Name;
+        return this.name;
     }
 
-    public int getStartTime() {
-        return StartTime;
-    }
-
-    public int getEndTime() {
-        return EndTime;
+    public Duration getDuration () throws CloneNotSupportedException {
+        return (Duration) this.duration.clone();
     }
 
     public String getReference() {
-        return Reference;
+        return this.references;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public String getRelatedSites() {
-        return RelatedSites;
+    public String getRelatedPlaces() {
+        return this.relatedPlaces;
     }
 
-    public ArrayList<T> getRelatedFigures() {
-        return RelatedFigures;
+    public List<T> getRelatedFigures() {
+        return this.relatedFigures;
     }
 
-    public void addRelatedFigure(T RelatedFigure) {
-        RelatedFigures.add(RelatedFigure);
+    public void addRelatedFigure(T relatedFigure) {
+        this.relatedFigures.add(relatedFigure);
     }
 
     public void removeRelatedFigure(T RelatedFigure) {
-        RelatedFigures.remove(RelatedFigure);
+        this.relatedFigures.remove(RelatedFigure);
     }
 
 }

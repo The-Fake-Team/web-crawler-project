@@ -35,4 +35,9 @@ public class Duration {
 		System.out.printf("Check: %d - %d", duration2.getStart(), duration2.getEnd());
 
 	}
+	
+	public Object clone() throws CloneNotSupportedException {
+
+	     return super.clone();
+	}
 }

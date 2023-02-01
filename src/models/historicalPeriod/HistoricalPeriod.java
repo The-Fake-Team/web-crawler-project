@@ -27,6 +27,9 @@ public class HistoricalPeriod {
         return this.duration;
     }
     
-    
+	public Object clone() throws CloneNotSupportedException {
+
+	     return super.clone();
+	}
 
 }
