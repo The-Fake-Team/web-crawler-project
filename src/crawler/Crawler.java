@@ -93,13 +93,13 @@ public class Crawler {
 	
 	public static void main(String[] args) {
 		
-		getHistoricalFiguresUrl();
-		crawlHistoricalFigure();
-		crawlHistoricalSite();
+//		getHistoricalFiguresUrl();
+//		crawlHistoricalFigure();
+//		crawlHistoricalSite();
 		crawlHistoricalPeriod();
-		getEventsUrl();
-		crawlHistoricEvent();
+//		getEventsUrl();
+//		crawlHistoricEvent();
 		crawlKing();
-		crawlFestival();
+//		crawlFestival();
 	}
 }

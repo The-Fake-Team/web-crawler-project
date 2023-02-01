@@ -60,18 +60,19 @@ public class HistoricalFigure implements Runnable{
 					
 					for (int j = 0; j < periodList.length; j ++) {
 						JSONObject period = new JSONObject();
-						JSONObject duration = new JSONObject();
 						
 						period.put("name", periodList[j].replaceAll("\\(.+", "").trim());
 						
 						for (int k = 0; k < allTimeStamps.length; k++) {
 			        		
 			        		if (periodSummnary.contains(allTimeStamps[k])) {
+			        			
+			        			JSONObject duration = new JSONObject();
 			        			duration.put("start", allNormalizedTimeStamps[k][0]);
 			        			duration.put("end", allNormalizedTimeStamps[k][1]);
+			        			period.put("duration", duration);
 			        		}
 			        		
-			        		period.put("duration", duration);
 			        	}
 						
 						periods.put(period);
