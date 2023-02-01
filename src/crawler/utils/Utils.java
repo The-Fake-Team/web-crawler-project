@@ -2,7 +2,7 @@ package crawler.utils;
 
 
 import java.util.ArrayList;
-
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
@@ -18,7 +18,24 @@ public final class Utils {
 	
 	public Utils() {
 	    
-	}	
+	}
+
+	public static String findPeriodName(int start, int end) throws IOException, ParseException {
+		JSONParser jsonParser = new JSONParser();
+		FileReader myReader = new FileReader("src\\data\\period.json");
+		Object obj = jsonParser.parse(myReader);
+		// System.out.println(obj);
+		JSONArray periodList = (JSONArray) obj;
+		String periodName = null;
+		for (int i = 0; i < periodList.size(); i++) {
+			JSONObject period = (JSONObject) periodList.get(i);
+			JSONObject duration = (JSONObject) period.get("duration");
+			if(start >= (int) duration.get("start") && end <= (int) duration.get("end")) {
+				periodName = period.get("name").toString();
+			}
+		}
+		return periodName;
+	}
 	
 	public static String removeTitle(String name) {
 		

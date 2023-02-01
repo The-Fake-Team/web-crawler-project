@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -109,8 +110,13 @@ public class King implements Runnable{
                 	time.put("end", Integer.parseInt(periodArray[1]));
                     eraWithKingList.put("time", time);
                 }
+                String periodName = Utils.findPeriodName(time.getInt("start"), time.getInt("end"));
 
-                eraWithKingList.put("period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+                if (periodName != null) {
+                    eraWithKingList.put("period", periodName);
+                } else {
+                    eraWithKingList.put("period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+                }
 
                 System.out.println("Get table " + (indexTable) + " successfully!!");
                 indexTable++;
@@ -128,6 +134,9 @@ public class King implements Runnable{
         
         } catch (JSONException | IOException e) {
         	e.printStackTrace();
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 	}
 	
