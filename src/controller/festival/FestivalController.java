@@ -1,5 +1,10 @@
 package controller.festival;
 
-public class FestivalController {
+import models.festival.Festival;
 
+public class FestivalController {
+	
+	private Festival model;
+	private 
+	
 }
