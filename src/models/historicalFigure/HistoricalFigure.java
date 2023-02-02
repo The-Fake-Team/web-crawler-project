@@ -16,8 +16,9 @@ public class HistoricalFigure {
     private String description;
     private List<HistoricalPeriod> periods = new ArrayList<HistoricalPeriod>();
 
-    public HistoricalFigure(String name, String otherName, int birthYear, int deathYear, String place, String description, HistoricalPeriod period){
+    public HistoricalFigure(int id, String name, String otherName, int birthYear, int deathYear, String place, String description, HistoricalPeriod period){
     	
+    	this.id = id;
         this.name = name;
         this.otherName = otherName;
         this.birthYear = birthYear;
@@ -25,6 +26,10 @@ public class HistoricalFigure {
         this.place = place;
         this.description = description;
         this.periods = new ArrayList<HistoricalPeriod>();;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
     
     public void setName(String name){
@@ -53,6 +58,10 @@ public class HistoricalFigure {
     
     public void setPeriod(List<HistoricalPeriod> periods){
         this.periods = new ArrayList<HistoricalPeriod>(periods);
+    }
+    
+    public int getId() {
+        return this.id;
     }
     
     public String getName(){
