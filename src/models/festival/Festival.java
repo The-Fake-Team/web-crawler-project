@@ -17,11 +17,16 @@ public class Festival<T> {
     	
     }
     
-    public Festival(String name, Date date, String place, String firstHeld) {
+    public Festival(int id, String name, Date date, String place, String firstHeld) {
+    	this.id = id;
         this.name = name;
         this.date = (Date) date.clone();
         this.place = place;
         this.firstHeld = firstHeld;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -42,6 +47,10 @@ public class Festival<T> {
     
     public void setRelatedCharacters(List<T> relatedCharacters) {
         this.relatedCharacters = new ArrayList<T>(relatedCharacters);
+    }
+
+    public int getId() {
+        return this.id;
     }
     
     public String getName() {
