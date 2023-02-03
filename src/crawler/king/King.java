@@ -8,8 +8,10 @@ import org.jsoup.select.Elements;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -89,6 +91,8 @@ public class King implements Runnable{
                 String[] periodArray = Utils.extractInt(titles.get(indexTable).text()).split("\\s+");
                 
                 JSONObject time = new JSONObject();
+                time.put("start", JSONObject.NULL);
+                time.put("end", JSONObject.NULL);
                 
                 if (periodArray.length > 1 && indexTable+1 < titles.size()) {
                 	
@@ -97,20 +101,22 @@ public class King implements Runnable{
                     int start = Integer.parseInt(periodArray[0]);
                     int end = Integer.parseInt(periodArray[1]);
                     int nextStart = Integer.parseInt(nextArray[0]);
-                    
-                    
+                         
                     time.put("start", start > end ? 0-start : start);
-                    time.put("end", start > end && end > nextStart  ? 0-end : end);
-                    eraWithKingList.put("time", time);
-                    
+                    time.put("end", start > end && end > nextStart  ? 0-end : end);                    
                 } else if (indexTable == titles.size()-1) {
                 	
                 	time.put("start", Integer.parseInt(periodArray[0]));
                 	time.put("end", Integer.parseInt(periodArray[1]));
-                    eraWithKingList.put("time", time);
                 }
-
-                eraWithKingList.put("period", titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim());
+                eraWithKingList.put("time", time);
+                
+                String nationalName = titles.get(indexTable).text().replaceAll("\\(([^\\]]+)\\)", "").trim();
+                eraWithKingList.put("nationalName", nationalName);
+                if(time.get("start") != JSONObject.NULL && time.get("end") != JSONObject.NULL) {
+                    String periodName = Utils.findPeriodName(time.getInt("start"), time.getInt("end"), nationalName);
+                    eraWithKingList.put("period", periodName);
+                }
 
                 System.out.println("Get table " + (indexTable) + " successfully!!");
                 indexTable++;
@@ -126,7 +132,7 @@ public class King implements Runnable{
         
         myWriter.close();
         
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | IOException | ParseException e) {
         	e.printStackTrace();
         }
 	}

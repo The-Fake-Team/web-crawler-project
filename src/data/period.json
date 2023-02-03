@@ -166,5 +166,12 @@
             "end": null
         },
         "name": "Nước Việt Nam mới"
+    },
+    {
+        "duration": {
+            "start": 1802,
+            "end": 1945
+        },
+        "name": "Nhà Nguyễn"
     }
 ]
