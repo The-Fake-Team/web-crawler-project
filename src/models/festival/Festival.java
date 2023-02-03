@@ -20,7 +20,7 @@ public class Festival<T> {
     public Festival(int id, String name, Date date, String place, String firstHeld) {
     	this.id = id;
         this.name = name;
-        this.date = (Date) date.clone();
+        this.date = date != null ? (Date) date.clone() : null;
         this.place = place;
         this.firstHeld = firstHeld;
     }
@@ -58,7 +58,7 @@ public class Festival<T> {
     }
     
     public Date getDate() {
-    	return (Date) this.date.clone();
+    	return this.date != null ? (Date) this.date.clone() : null;
     }
     
     public String getPlace() {
