@@ -16,7 +16,7 @@ public class HistoricalFigure {
     private String description;
     private List<HistoricalPeriod> periods = new ArrayList<HistoricalPeriod>();
 
-    public HistoricalFigure(int id, String name, String otherName, int birthYear, int deathYear, String place, String description, HistoricalPeriod period){
+    public HistoricalFigure(int id, String name, String otherName, int birthYear, int deathYear, String place, String description, List<HistoricalPeriod> periods){
     	
     	this.id = id;
         this.name = name;
@@ -25,7 +25,7 @@ public class HistoricalFigure {
         this.deathYear = deathYear;
         this.place = place;
         this.description = description;
-        this.periods = new ArrayList<HistoricalPeriod>();;
+        this.periods = new ArrayList<HistoricalPeriod>(periods);;
     }
     
     public void setId(int id) {
