@@ -14,6 +14,7 @@ import org.json.simple.parser.*;
 
 import models.historicalFigure.HistoricalFigure;
 import models.historicalPeriod.HistoricalPeriod;
+import models.king.King;
 
 public class ReadFigure extends FileInfo implements ReadData<HistoricalFigure> {
 
@@ -78,7 +79,7 @@ public class ReadFigure extends FileInfo implements ReadData<HistoricalFigure> {
                     periodList.add(period);
                 }
 
-                HistoricalFigure figure1 = new HistoricalFigure(id, name, otherName, birthYear, deathYear, description,
+                HistoricalFigure figure1 = new King(id, name, otherName, birthYear, deathYear, description,
                         place, periodList);
                 figures.add(figure1);
             }
