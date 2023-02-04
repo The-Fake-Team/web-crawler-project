@@ -16,18 +16,12 @@ import models.historicalFigure.HistoricalFigure;
 import models.historicalPeriod.HistoricalPeriod;
 import models.king.King;
 
-public class ReadKing extends FileInfo implements ReadData<HistoricalFigure> {
+public class ReadKing extends FileInfo {
     public ReadKing(String fileName) {
         super(fileName);
     }
 
-    @Override
-    public List<HistoricalFigure> readData() {
-        return null;
-
-    }
-
-    public List<HistoricalFigure> readData(List<HistoricalFigure> figures) {
+    public List<King> readData() {
         List<King> kings = new ArrayList<King>();
         JSONParser jsonpanser = new JSONParser();
 
@@ -37,56 +31,62 @@ public class ReadKing extends FileInfo implements ReadData<HistoricalFigure> {
             for (int i = 0; i < Kings.size(); i++) {
                 JSONObject empObject = (JSONObject) Kings.get(i);
                 JSONArray arr = (JSONArray) empObject.get("kingList");
-                Number a = (Number) empObject.get("period start");
-                Number b = (Number) empObject.get("period end");
-                String name = (String) empObject.get("name period");
-                int start, end;
+
+                String name = (String) empObject.get("nitionalName");
+
+                JSONObject emp1 = (JSONObject) empObject.get("time");
+                Integer start = null, end = null;
                 try {
-                    start = a.intValue();
+                    int a = (int) (long) emp1.get("period start");
+                    start = a;
                 } catch (Exception e) {
-                    start = -2000;
+                    start = null;
                 }
                 try {
-                    end = b.intValue();
+                    int b = (int) (long) emp1.get("period end");
+                    end = b;
                 } catch (Exception e) {
-                    end = 2100;
+                    end = null;
                 }
 
                 HistoricalPeriod period = new HistoricalPeriod(name, start, end);
                 for (int j = 0; j < arr.size(); j++) {
                     JSONObject emp = (JSONObject) arr.get(j);
-                    String ThuyHieu = (String) emp.get("Thụy hiệu");
-                    String MieuHieu = (String) emp.get("Miếu hiệu");
-                    String TriVi = (String) emp.get("Trị vì");
-                    String TheThu = (String) emp.get("Thế thứ");
-                    String NienHieu = (String) emp.get("Niên hiệu");
-                    String Vua = (String) emp.get("Vua");
-                    String name1 = (String) emp.get("Tên húy");
-                    String HoangDe = (String) emp.get("Hoàng đế");
-                    String[] name2 = name1.split(",\n");
-                    // String TenHuy = (String) emp.get("Tên húy");
-                    List<String> TenHuy = new ArrayList<String>();
+                    String thuyHieu = (String) emp.get("Thụy hiệu");
+                    String mieuHieu = (String) emp.get("Miếu hiệu");
+                    String triVi = (String) emp.get("Trị vì");
+                    String theThu = (String) emp.get("Thế thứ");
+                    String nienHieu = (String) emp.get("Niên hiệu");
+                    String vua = (String) emp.get("Vua");
+                    String hoangDe = (String) emp.get("Hoàng đế");
+                    String tietDoSu = (String) emp.get("Tiết độ sư");
+                    String thuLinh = (String) emp.get("Thủ lĩnh");
 
+                    String name1 = (String) emp.get("Tên húy");
+                    String[] name2 = name1.split(",\n");
+                    List<String> tenHuy = new ArrayList<String>();
                     for (int k = 0; k < name2.length; k++) {
-                        TenHuy.add(name2[k]);
+                        tenHuy.add(name2[k]);
                     }
 
-                    if (ThuyHieu == null)
-                        ThuyHieu = " ";
-                    King king = new King(ThuyHieu, NienHieu, MieuHieu, 0, 0, TheThu, HoangDe, TenHuy);
+                    
+                    King king = new King(vua, thuyHieu, tietDoSu, thuLinh, mieuHieu, triVi, theThu, nienHieu, hoangDe,
+                            tenHuy);
+                    king.addPeriod(period);
                     kings.add(king);
                 }
-
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
+        return kings;
+    }
+
+    public List<HistoricalFigure> mergeData(List<HistoricalFigure> figures, List<King> kings) {
         for (int i = 0; i < figures.size(); i++) {
             String name = figures.get(i).getName();
             for (int j = 0; j < kings.size(); j++) {
@@ -98,7 +98,10 @@ public class ReadKing extends FileInfo implements ReadData<HistoricalFigure> {
                     king.setNienHieu(kings.get(j).getNienHieu());
                     king.setTheThu(kings.get(j).getTheThu());
                     king.setHoangDe(kings.get(j).getHoangDe());
-                    king.setTriVi(0, 0);
+                    king.setTriVi(kings.get(j).getTriVi());
+                    king.setHoangDe(kings.get(j).getHoangDe());
+                    king.setThuLinh(kings.get(j).getThuLinh());
+                    king.setTietDoSu(kings.get(j).getTietDoSu());
                     king.setRoleTrue();
                     figures.remove(i);
                     figures.add(i, king);
@@ -108,4 +111,5 @@ public class ReadKing extends FileInfo implements ReadData<HistoricalFigure> {
         }
         return figures;
     }
+
 }
