@@ -27,12 +27,12 @@ public class King extends HistoricalFigure {
 		super(id, name, otherName, birthYear, deathYear, place, description, period);
 	}
 
-	public King(String thuyHieu, String nienHieu, String mieuHieu, int StarttriVi, int EndtriVi, String theThu,
+	public King(String thuyHieu, String nienHieu, String mieuHieu, Integer startTriVi, Integer endTriVi, String theThu,
 			String hoangDe, List<String> tenHuy) {
 		this.thuyHieu = thuyHieu;
 		this.nienHieu = nienHieu;
 		this.mieuHieu = mieuHieu;
-		this.triVi = new Duration(StarttriVi, EndtriVi);
+		this.triVi = new Duration(startTriVi, endTriVi);
 		this.theThu = theThu;
 		this.hoangDe = hoangDe;
 		this.tenHuy = tenHuy;
@@ -62,8 +62,8 @@ public class King extends HistoricalFigure {
 		return mieuHieu;
 	}
 
-	public void setTriVi(int StarttriVi, int EndtriVi) {
-		this.triVi = new Duration(StarttriVi, EndtriVi);
+	public void setTriVi(Integer startTriVi, Integer endTriVi) {
+		this.triVi = new Duration(startTriVi, endTriVi);
 	}
 
 	public Duration getTriVi() {
