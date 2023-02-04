@@ -69,6 +69,7 @@ public class ReadKing extends FileInfo {
                         tenHuy.add(name2[k]);
                     }
 
+                    
                     King king = new King(vua, thuyHieu, tietDoSu, thuLinh, mieuHieu, triVi, theThu, nienHieu, hoangDe,
                             tenHuy);
                     king.addPeriod(period);
