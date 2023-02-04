@@ -14,6 +14,9 @@ public class HistoricEvent<T> {
     private String relatedPlaces;
     private List<T> relatedFigures = new ArrayList<T>();
 
+    public HistoricEvent() {
+    	
+    }
     public HistoricEvent(String name, Integer start, Integer end, String references, String description, String relatedPlaces) {
         this.name = name;
         this.duration = new Duration(start, end);

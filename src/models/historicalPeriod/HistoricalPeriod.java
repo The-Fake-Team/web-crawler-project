@@ -31,5 +31,12 @@ public class HistoricalPeriod {
 
 	     return super.clone();
 	}
+    public void setNationalName(String nationalName) {
+        this.nationalName = nationalName;
+    }
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+    
 
 }
