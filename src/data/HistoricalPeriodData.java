@@ -36,7 +36,7 @@ public class HistoricalPeriodData extends FileInfo implements ReadData<Historica
                 JSONObject duration = (JSONObject) periodObject.get("duration");
 
                 Integer start = null, end = null;
-                
+                                
                 try {
                     int a = (int) (long) duration.get("start");
                     start = a;

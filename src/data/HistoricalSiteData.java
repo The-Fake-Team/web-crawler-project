@@ -55,7 +55,7 @@ public class HistoricalSiteData extends FileInfo implements ReadData<HistoricalS
                 } catch (Exception e) {
                 	
                 }
-                HistoricalSite historicalSite = new HistoricalSite(name, recognitionDate, place, summary, description);
+                HistoricalSite historicalSite = new HistoricalSite(i+1, name, recognitionDate, place, summary, description);
                 
                 historicalSites.add(historicalSite);
             }
