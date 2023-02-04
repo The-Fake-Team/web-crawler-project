@@ -1,22 +1,23 @@
 package models.king;
 
-import models.duration.Duration;
 import models.historicalFigure.HistoricalFigure;
 import models.historicalPeriod.HistoricalPeriod;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class King extends HistoricalFigure {
 
 	private String thuyHieu;
+	private String vua;
 	private String nienHieu;
+	private List<String> tenHuy;
+	private String tietDoSu;
+	private String thuLinh;
 	private String mieuHieu;
-	private Duration triVi;
+	private String triVi;
 	private String theThu;
 	private String hoangDe;
-	private List<String> tenHuy;
 
 	public King() {
 		super();
@@ -27,19 +28,39 @@ public class King extends HistoricalFigure {
 		super(id, name, otherName, birthYear, deathYear, place, description, period);
 	}
 
-	public King(String thuyHieu, String nienHieu, String mieuHieu, Integer startTriVi, Integer endTriVi, String theThu,
+	public King(String vua, String thuyHieu, String nienHieu, String tietDoSu, String thuLinh, String mieuHieu,
+			String triVi, String theThu,
 			String hoangDe, List<String> tenHuy) {
 		this.thuyHieu = thuyHieu;
 		this.nienHieu = nienHieu;
 		this.mieuHieu = mieuHieu;
-		this.triVi = new Duration(startTriVi, endTriVi);
+		this.triVi = triVi;
 		this.theThu = theThu;
 		this.hoangDe = hoangDe;
 		this.tenHuy = tenHuy;
+		this.vua = vua;
+		this.tietDoSu = tietDoSu;
+		this.thuLinh = thuLinh;
 	}
 
 	public void setThuyHieu(String thuyHieu) {
 		this.thuyHieu = thuyHieu;
+	}
+
+	public void setVua(String vua) {
+		this.vua = vua;
+	}
+
+	public void setTietDoSu(String tietDoSu) {
+		this.tietDoSu = tietDoSu;
+	}
+
+	public void setThuLinh(String thuLinh) {
+		this.thuLinh = thuLinh;
+	}
+
+	public void setTheThu(String theThu) {
+		this.theThu = theThu;
 	}
 
 	public String getThuyHieu() {
@@ -62,16 +83,8 @@ public class King extends HistoricalFigure {
 		return mieuHieu;
 	}
 
-	public void setTriVi(Integer startTriVi, Integer endTriVi) {
-		this.triVi = new Duration(startTriVi, endTriVi);
-	}
-
-	public Duration getTriVi() {
+	public String getTriVi() {
 		return triVi;
-	}
-
-	public void setTheThu(String theThu) {
-		this.theThu = theThu;
 	}
 
 	public String getTheThu() {
@@ -94,10 +107,23 @@ public class King extends HistoricalFigure {
 		return new ArrayList<String>(tenHuy);
 	}
 
+	public String getVua() {
+		return vua;
+	}
+
+	public String getTietDoSu() {
+		return tietDoSu;
+	}
+
+	public String getThuLinh() {
+		return thuLinh;
+	}
+
 	@Override
 	public String toString() {
-		return "King [mieuHieu=" + mieuHieu + ", nienHieu=" + nienHieu + ", theThu=" + theThu + ", thuyHieu=" + thuyHieu
-				+ ", triVi=" + triVi.getStart() + "-" + triVi.getEnd() + ", hoangDe=" + hoangDe + ", Name=" + "]";
+		return "King [thuyHieu=" + thuyHieu + ", vua=" + vua + ", nienHieu=" + nienHieu + ", tenHuy=" + tenHuy
+				+ ", tietDoSu=" + tietDoSu + ", thuLinh=" + thuLinh + ", mieuHieu=" + mieuHieu + ", triVi=" + triVi
+				+ ", theThu=" + theThu + ", hoangDe=" + hoangDe + "]";
 	}
 
 }
