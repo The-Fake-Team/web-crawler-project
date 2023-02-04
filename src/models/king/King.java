@@ -29,8 +29,7 @@ public class King extends HistoricalFigure {
 	}
 
 	public King(String vua, String thuyHieu, String nienHieu, String tietDoSu, String thuLinh, String mieuHieu,
-			String triVi, String theThu,
-			String hoangDe, List<String> tenHuy) {
+			String triVi, String theThu, String hoangDe, List<String> tenHuy) {
 		this.thuyHieu = thuyHieu;
 		this.nienHieu = nienHieu;
 		this.mieuHieu = mieuHieu;
@@ -49,6 +48,10 @@ public class King extends HistoricalFigure {
 
 	public void setVua(String vua) {
 		this.vua = vua;
+	}
+
+	public void setTriVi(String triVi) {
+		this.triVi = triVi;
 	}
 
 	public void setTietDoSu(String tietDoSu) {

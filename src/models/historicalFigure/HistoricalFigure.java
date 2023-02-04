@@ -70,6 +70,10 @@ public class HistoricalFigure {
         this.periods = new ArrayList<HistoricalPeriod>(periods);
     }
 
+    public void addPeriod(HistoricalPeriod period) {
+        this.periods.add(period);
+    }
+
     public int getId() {
         return this.id;
     }
