@@ -92,7 +92,7 @@ public class FestivalData extends FileInfo implements ReadData<Festival> {
                     	festival.addRelatedFigure(figures.get(id - 1));
                     }
                 }
-                festivalObjectList.add(festival);
+                festivals.add(festival);
             }
 
         } catch (FileNotFoundException e) {
@@ -103,6 +103,5 @@ public class FestivalData extends FileInfo implements ReadData<Festival> {
             e1.printStackTrace();
         }
         return festivals;
-
     }
 }
