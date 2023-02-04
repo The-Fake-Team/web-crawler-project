@@ -1,6 +1,5 @@
 [
     {
-        "period": "Hồng Bàng",
         "kingList": [
             {
                 "Thụy hiệu": "Kinh Dương Vương,",
@@ -338,7 +337,12 @@
                 "Tôn hiệu": "không có",
                 "Hoàng đế": ""
             }
-        ]
+        ],
+        "time": {
+            "start": null,
+            "end": null
+        },
+        "nationalName": "Hồng Bàng"
     },
     {
         "period": "Nhà Thục",
@@ -363,10 +367,11 @@
         "time": {
             "start": -257,
             "end": -208
-        }
+        },
+        "nationalName": "Nhà Thục"
     },
     {
-        "period": "Nhà Triệu",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ nhất",
         "kingList": [
             {
                 "Thụy hiệu": "Vũ Vương\nVũ Đế,",
@@ -452,7 +457,8 @@
         "time": {
             "start": -204,
             "end": -111
-        }
+        },
+        "nationalName": "Nhà Triệu"
     },
     {
         "period": "Trưng Nữ Vương",
@@ -477,10 +483,11 @@
         "time": {
             "start": 40,
             "end": 43
-        }
+        },
+        "nationalName": "Trưng Nữ Vương"
     },
     {
-        "period": "Nhà Tiền Lý và Triệu Việt Vương",
+        "period": "Nhà tiền Lý và nhà Triệu",
         "kingList": [
             {
                 "Thụy hiệu": "Nam Đế,\nNam Việt Đế,",
@@ -566,10 +573,11 @@
         "time": {
             "start": 544,
             "end": 603
-        }
+        },
+        "nationalName": "Nhà Tiền Lý và Triệu Việt Vương"
     },
     {
-        "period": "Họ Mai",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
         "kingList": [
             {
                 "Thụy hiệu": "Đại Đế,\nHắc Đế,",
@@ -623,10 +631,11 @@
         "time": {
             "start": 713,
             "end": 723
-        }
+        },
+        "nationalName": "Họ Mai"
     },
     {
-        "period": "Họ Phùng",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
         "kingList": [
             {
                 "Thụy hiệu": "Bố Cái Đại Vương,",
@@ -664,10 +673,11 @@
         "time": {
             "start": 766,
             "end": 791
-        }
+        },
+        "nationalName": "Họ Phùng"
     },
     {
-        "period": "Họ Khúc",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
         "kingList": [
             {
                 "Thụy hiệu": "Tiên Vương",
@@ -721,10 +731,11 @@
         "time": {
             "start": 905,
             "end": 923
-        }
+        },
+        "nationalName": "Họ Khúc"
     },
     {
-        "period": "Họ Dương",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -746,10 +757,11 @@
         "time": {
             "start": 931,
             "end": 937
-        }
+        },
+        "nationalName": "Họ Dương"
     },
     {
-        "period": "Họ Kiều",
+        "period": "Thời kỳ phong kiến phương Bắc đô hộ lần thứ ba",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -771,10 +783,11 @@
         "time": {
             "start": 937,
             "end": 938
-        }
+        },
+        "nationalName": "Họ Kiều"
     },
     {
-        "period": "Nhà Ngô và Dương Tam Kha",
+        "period": "Nhà Ngô",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -860,7 +873,8 @@
         "time": {
             "start": 939,
             "end": 966
-        }
+        },
+        "nationalName": "Nhà Ngô và Dương Tam Kha"
     },
     {
         "period": "Nhà Đinh",
@@ -901,7 +915,8 @@
         "time": {
             "start": 968,
             "end": 980
-        }
+        },
+        "nationalName": "Nhà Đinh"
     },
     {
         "period": "Nhà Tiền Lê",
@@ -958,7 +973,8 @@
         "time": {
             "start": 980,
             "end": 1009
-        }
+        },
+        "nationalName": "Nhà Tiền Lê"
     },
     {
         "period": "Nhà Lý",
@@ -1143,7 +1159,8 @@
         "time": {
             "start": 1009,
             "end": 1225
-        }
+        },
+        "nationalName": "Nhà Lý"
     },
     {
         "period": "Nhà Trần",
@@ -1360,7 +1377,8 @@
         "time": {
             "start": 1225,
             "end": 1400
-        }
+        },
+        "nationalName": "Nhà Trần"
     },
     {
         "period": "Nhà Hồ",
@@ -1401,10 +1419,11 @@
         "time": {
             "start": 1400,
             "end": 1407
-        }
+        },
+        "nationalName": "Nhà Hồ"
     },
     {
-        "period": "Nhà Hậu Trần",
+        "period": "Hậu Trần",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -1458,10 +1477,11 @@
         "time": {
             "start": 1407,
             "end": 1414
-        }
+        },
+        "nationalName": "Nhà Hậu Trần"
     },
     {
-        "period": "Khởi nghĩa Lam Sơn",
+        "period": "Thời kỳ thuộc Minh",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -1483,10 +1503,11 @@
         "time": {
             "start": 1418,
             "end": 1427
-        }
+        },
+        "nationalName": "Khởi nghĩa Lam Sơn"
     },
     {
-        "period": "Nhà Hậu Lê \u2013 giai đoạn Lê sơ",
+        "period": "Triều Lê Sơ",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -1716,10 +1737,11 @@
         "time": {
             "start": 1428,
             "end": 1527
-        }
+        },
+        "nationalName": "Nhà Hậu Lê \u2013 giai đoạn Lê sơ"
     },
     {
-        "period": "Bắc triều \u2013 Nhà Mạc",
+        "period": "Bắc Triều - Nam Triều",
         "kingList": [
             {
                 "Thụy hiệu": "Nhân Minh Cao Hoàng Đế,",
@@ -1933,10 +1955,11 @@
         "time": {
             "start": 1527,
             "end": 1592
-        }
+        },
+        "nationalName": "Bắc triều \u2013 Nhà Mạc"
     },
     {
-        "period": "Nam triều \u2013 Nhà Hậu Lê \u2013 giai đoạn Lê Trung hưng",
+        "period": "Thời Trịnh - Nguyễn phân tranh",
         "kingList": [
             {
                 "Thụy hiệu": "Dụ Hoàng Đế,",
@@ -2214,10 +2237,11 @@
         "time": {
             "start": 1533,
             "end": 1789
-        }
+        },
+        "nationalName": "Nam triều \u2013 Nhà Hậu Lê \u2013 giai đoạn Lê Trung hưng"
     },
     {
-        "period": "Đàng Ngoài - Chúa Trịnh",
+        "period": "Thời Trịnh - Nguyễn phân tranh",
         "kingList": [
             {
                 "Thụy hiệu": "không có",
@@ -2431,10 +2455,11 @@
         "time": {
             "start": 1545,
             "end": 1787
-        }
+        },
+        "nationalName": "Đàng Ngoài - Chúa Trịnh"
     },
     {
-        "period": "Đàng Trong - Chúa Nguyễn",
+        "period": "Thời Trịnh - Nguyễn phân tranh",
         "kingList": [
             {
                 "Thụy hiệu": "Triệu Cơ Tùy Thống Khâm Minh Cung Ý Cần Nghĩa Đạt Lý Hiển Ứng Chiêu Hựu Diệu Linh Gia Dụ Hoàng Đế,,",
@@ -2610,7 +2635,8 @@
         "time": {
             "start": 1558,
             "end": 1777
-        }
+        },
+        "nationalName": "Đàng Trong - Chúa Nguyễn"
     },
     {
         "period": "Nhà Tây Sơn",
@@ -2667,7 +2693,8 @@
         "time": {
             "start": 1778,
             "end": 1802
-        }
+        },
+        "nationalName": "Nhà Tây Sơn"
     },
     {
         "period": "Nhà Nguyễn",
@@ -2884,6 +2911,7 @@
         "time": {
             "start": 1802,
             "end": 1945
-        }
+        },
+        "nationalName": "Nhà Nguyễn"
     }
 ]
