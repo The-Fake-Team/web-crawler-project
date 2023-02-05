@@ -21,7 +21,7 @@ public class HistoricalFigure {
 
     }
 
-    public HistoricalFigure(int id, String name, String otherName, int birthYear, int deathYear, String place,
+    public HistoricalFigure(int id, String name, String otherName, Integer birthYear, Integer deathYear, String place,
             String description, List<HistoricalPeriod> periods) {
 
         this.id = id;

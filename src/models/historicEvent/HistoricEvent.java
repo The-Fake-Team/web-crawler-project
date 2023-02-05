@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import models.duration.Duration;
 
-
 public class HistoricEvent<T> {
-	
+
     private String name;
     private Duration duration;
     private String references;
@@ -15,9 +14,11 @@ public class HistoricEvent<T> {
     private List<T> relatedFigures = new ArrayList<T>();
 
     public HistoricEvent() {
-    	
+
     }
-    public HistoricEvent(String name, Integer start, Integer end, String references, String description, String relatedPlaces) {
+
+    public HistoricEvent(String name, Integer start, Integer end, String references, String description,
+            String relatedPlaces) {
         this.name = name;
         this.duration = new Duration(start, end);
         this.references = references;
@@ -29,14 +30,14 @@ public class HistoricEvent<T> {
         this.name = name;
     }
 
-    public void setDuration(int start, int end) {
+    public void setDuration(Integer start, Integer end) {
         this.duration = new Duration(start, end);
     }
-    
+
     public void setDuration(Duration duration) throws CloneNotSupportedException {
         this.duration = (Duration) duration.clone();
     }
-    
+
     public void setReference(String references) {
         this.references = references;
     }
@@ -53,7 +54,7 @@ public class HistoricEvent<T> {
         return this.name;
     }
 
-    public Duration getDuration () throws CloneNotSupportedException {
+    public Duration getDuration() throws CloneNotSupportedException {
         return (Duration) this.duration.clone();
     }
 
