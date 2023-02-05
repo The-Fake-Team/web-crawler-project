@@ -19,7 +19,7 @@
    <children>
       <BorderPane prefHeight="708.0" prefWidth="1008.0" style="-fx-background-color: White;">
          <left>
-            <Pane prefHeight="694.0" prefWidth="1008.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="633.0" prefWidth="1008.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="50.0" layoutY="65.0" prefHeight="35.0" prefWidth="218.0" text="Thời kì lịch sử" textAlignment="CENTER">
                      <font>
