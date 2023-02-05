@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</BorderPane>
-
+<Pane prefHeight="708.0" prefWidth="1013.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="708.0" prefWidth="1008.0" style="-fx-background-color: White;">
+         <left>
+            <Pane prefHeight="694.0" prefWidth="1008.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="50.0" layoutY="65.0" prefHeight="35.0" prefWidth="218.0" text="Vua Việt Nam" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="49.0" layoutY="121.0" prefHeight="1.0" prefWidth="914.0" />
+                  <TableView fx:id="table" layoutX="47.0" layoutY="150.0" prefHeight="536.0" prefWidth="913.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="114.0" text="Vua" />
+                        <TableColumn fx:id="mieuHieuColumn" prefWidth="111.0" text="Miếu hiệu" />
+                        <TableColumn fx:id="thuyHieuColumn" minWidth="0.0" prefWidth="117.0" text="Thụy hiệu" />
+                        <TableColumn fx:id="nienHieuColumn" prefWidth="112.0" text="Niên hiệu" />
+                        <TableColumn fx:id="tenHuyColumn" prefWidth="143.0" text="Tên húy" />
+                        <TableColumn fx:id="theThuColumn" prefWidth="209.0" text="Thế thứ" />
+                        <TableColumn fx:id="triViColumn" prefWidth="106.0" text="Trị vì" />
+                    </columns>
+                  </TableView>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Pane>
+         </left>
+      </BorderPane>
+   </children>
+</Pane>
