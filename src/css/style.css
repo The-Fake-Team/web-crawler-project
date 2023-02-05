@@ -1,0 +1,25 @@
+.write-background {
+	-fx-background-color: #cdcdcd;
+}
+
+.round-layout {
+	-fx-border-radius : 50;
+	-fx-border-color : #D7D7D7;
+}
+
+.transparent {
+	-fx-background-color : rgba(0,0,0,0);
+}
+
+
+.thin-border {
+	-fx-border-width: 4;
+}
+
+.blue-background {
+	-fx-background-color: blue; 
+}
+
+.shadow {
+	-fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}

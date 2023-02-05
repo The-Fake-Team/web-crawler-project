@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="292.0" style="-fx-border-color: rgba(65, 226, 241, 0.46); -fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #ffffff;" styleClass="shadow" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.festival.FestivalController">
+   <children>
+      <VBox prefHeight="179.0" prefWidth="21.0" style="-fx-background-color: rgba(65, 226, 241, 0.46);" />
+      <VBox prefHeight="179.0" prefWidth="240.0">
+         <children>
+            <VBox prefHeight="179.0" prefWidth="223.0">
+               <children>
+                  <JFXButton fx:id="name" buttonType="RAISED" prefHeight="69.0" prefWidth="253.0" text="Name">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <HBox prefHeight="39.0" prefWidth="263.0">
+                     <children>
+                        <Label prefHeight="48.0" prefWidth="89.0" text="   Time: ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXButton fx:id="time" buttonType="RAISED" prefHeight="38.0" prefWidth="153.0" text="Button">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXButton>
+                     </children></HBox>
+                  <HBox prefHeight="46.0" prefWidth="230.0">
+                     <children>
+                        <Label prefHeight="42.0" prefWidth="77.0" text="   Place: ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXButton fx:id="place" prefHeight="46.0" prefWidth="182.0" text="Button">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
