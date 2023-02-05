@@ -11,6 +11,7 @@ import org.json.simple.parser.*;
 
 import models.historicalFigure.HistoricalFigure;
 import models.historicalPeriod.HistoricalPeriod;
+import models.king.King;
 
 public class HistoricalFigureData extends FileInfo implements ReadData<HistoricalFigure> {
 
@@ -38,19 +39,29 @@ public class HistoricalFigureData extends FileInfo implements ReadData<Historica
                 Integer birthYear = null, deathYear = null;
                 
                 try {
-                	
-                    int birth = (int) (long) figureObject.get("birthYear");
-                    
-                    birthYear = birth;
+                	if (figureObject.get("birthYear") != null) { 
+                		
+                		int birth = (int) (long) figureObject.get("birthYear");
+                		
+                		birthYear = birth;
+                	} else {
+                		
+                		birthYear = 0;
+                	}
                 } catch (Exception e) {
                 	
                     birthYear = null;
                 }
                 try {
-                	
-                    int death = (int) (long) figureObject.get("deathYear");
-                    
-                    deathYear = death;
+                	if (figureObject.get("deathYear") != null) {
+                		
+                		int death = (int) (long) figureObject.get("deathYear");
+                		
+                		deathYear = death;
+                	} else {
+                		
+                		deathYear =0;
+                	}
                     
                 } catch (Exception e) {
                 	
@@ -73,7 +84,7 @@ public class HistoricalFigureData extends FileInfo implements ReadData<Historica
                 
                 for (int j = 0; j < periods.size(); j++) {
                 	
-                    JSONObject emp = (JSONObject) periods.get(0);
+                    JSONObject emp = (JSONObject) periods.get(j);
                     
                     Integer start = null, end = null;
                     
@@ -101,17 +112,16 @@ public class HistoricalFigureData extends FileInfo implements ReadData<Historica
                     periodList.add(period);
                 }
 
-                HistoricalFigure figure1 = new HistoricalFigure(id, name, otherName, birthYear, deathYear, description, place, periodList);
+                
+                HistoricalFigure figure1 = new King(id, name, otherName, birthYear, deathYear, place,
+                        description, periodList);                
                 figures.add(figure1);
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e1) {
-            e1.printStackTrace();
         }
+        
         return figures;
 
     }
