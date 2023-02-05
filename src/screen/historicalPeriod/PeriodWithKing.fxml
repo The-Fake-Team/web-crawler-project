@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<VBox prefHeight="788.0" prefWidth="863.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.historicalPeriod.historicalPeriodController">
+   <children>
+      <JFXButton fx:id="name" buttonType="RAISED" prefHeight="55.0" prefWidth="812.0" style="-fx-background-color: rgba(5, 47, 56, 0.73);" text="Button" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="table" prefHeight="609.0" prefWidth="812.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="253.0" text="Tên" />
+          <TableColumn fx:id="periodColumn" prefWidth="303.0" text="Thời kì" />
+            <TableColumn fx:id="placesColumn" prefWidth="254.0" text="Tỉnh thành" />
+        </columns>
+      </TableView>
+   </children>
+   <padding>
+      <Insets left="50.0" top="120.0" />
+   </padding>
+</VBox>

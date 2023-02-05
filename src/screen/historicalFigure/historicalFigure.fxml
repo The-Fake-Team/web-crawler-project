@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<VBox prefHeight="300.0" prefWidth="741.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.historicalFigure.HistoricalFigureController">
+   <children>
+      <JFXButton fx:id="name" buttonType="RAISED" prefHeight="73.0" prefWidth="758.0" style="-fx-background-color: rgba(5, 47, 56, 0.73);" text="Button" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="737.6708984375">
+         <VBox.margin>
+            <Insets left="10.0" top="15.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</VBox>
