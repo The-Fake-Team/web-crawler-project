@@ -81,6 +81,7 @@ public class King implements Runnable{
 	    						king.put(field, "");
 	    					}
 	    				}
+	    				
                     }
                     
                     kingList.put(king);

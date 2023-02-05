@@ -35,7 +35,7 @@ public class HistoricalPeriod implements Runnable{
             JSONArray historicalPeriodList = new JSONArray();
             
             for (int i = 0; i < historicalPeriods.size(); i++) {
-
+            	
                 JSONObject historicalPeriod = new JSONObject();
                 
                 String historicalPeriodTitle = historicalPeriods.get(i).text();
