@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import controller.festival.FestivalController;
-import data.FestivalData;
-import data.HistoricEventData;
-import data.HistoricalFigureData;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,14 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import models.festival.Festival;
 import models.historicEvent.HistoricEvent;
-import models.historicalFigure.HistoricalFigure;
 
 public class HistoricEventsController implements Initializable{
-
 
     @FXML
     private AnchorPane contentArea;
@@ -41,24 +35,51 @@ public class HistoricEventsController implements Initializable{
     
     private List<HistoricEvent> historicEvents = new ArrayList<HistoricEvent>();
     
-    public HistoricEventsController() {
+    public HistoricEventsController(){
         super();
     }
     
 	public HistoricEventsController(List<HistoricEvent> historicEvents) {
-		
 		super();
 		this.historicEvents = historicEvents;
 	}
-	
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		createContent(this.historicEvents);
+    	
+    	eventFilter.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String oldValue, String newValue) {
+				filterEventWithName(newValue);
+			}
+		});
+	}
+	
+	private void filterEventWithName (String name) {
+		
+		List<HistoricEvent> returnList = new ArrayList<HistoricEvent>();
+		
+		for (int i = 0; i < this.historicEvents.size(); i ++) {
+			
+			if(this.historicEvents.get(i).getName().contains(name)) {
+				
+				returnList.add(this.historicEvents.get(i));
+			}
+		}
+		
+		eventContainer.getChildren().clear();
+		createContent(returnList);
+	}
+	
+	private void createContent(List<HistoricEvent> historicEvents) {
 		
 		int row = 1;
     	
     	try {
     		
-	    	for (HistoricEvent event : this.historicEvents) {
+	    	for (HistoricEvent event : historicEvents) {
 	    		
 	    		FXMLLoader fxmlLoader = new FXMLLoader();
 	    		
@@ -73,8 +94,10 @@ public class HistoricEventsController implements Initializable{
 	    		eventContainer.add(eventBox, 0, row++);
 	    		eventContainer.setMargin(eventBox, new Insets(10, 10, 10, 10));
 	    	}
+	    	
     	} catch (IOException e) {
-    	
+    		
+        	e.printStackTrace();
     	}
 	}
 
