@@ -7,13 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-
 public class Main extends Application {
     double x,y = 0;
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	    	
+    	
         Parent root = FXMLLoader.load(getClass().getResource("/view/dashboard/dashboard.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         
