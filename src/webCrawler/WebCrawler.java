@@ -83,8 +83,7 @@ public class WebCrawler extends Application{
 	    }
 
 	    public static void main(String[] args) {
-//	    	crawlData();
-
+	    	crawlData();
 	        launch(args);
 	    }
 
