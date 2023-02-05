@@ -13,9 +13,7 @@ public class Main extends Application {
     double x,y = 0;
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	
-    	System.out.println();
-    	
+    	    	
         Parent root = FXMLLoader.load(getClass().getResource("/view/dashboard/dashboard.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         
@@ -30,7 +28,7 @@ public class Main extends Application {
             primaryStage.setY(event.getScreenY() - y);
         });
         
-        primaryStage.setScene(new Scene(root, 1366, 768));
+        primaryStage.setScene(new Scene(root, 1400, 768));
         primaryStage.show();
     }
 
