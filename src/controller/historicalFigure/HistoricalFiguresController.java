@@ -1,35 +1,36 @@
 package controller.historicalFigure;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.security.auth.callback.Callback;
+import com.jfoenix.controls.JFXButton;
 
-import data.HistoricalFigureData;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeTableView.ResizeFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import models.historicalFigure.HistoricalFigure;
-import models.historicalPeriod.HistoricalPeriod;
-import models.historicalSite.HistoricalSite;
 
-public class HistoricalFigureController implements Initializable {
+public class HistoricalFiguresController implements Initializable {
 
+    @FXML
+    private StackPane rootPane;
+    
 	@FXML
 	private TableView<HistoricalFigure> table;
 	
@@ -56,7 +57,8 @@ public class HistoricalFigureController implements Initializable {
 	
 	private ObservableList<HistoricalFigure> historicalFigureList;
 	
-	public HistoricalFigureController(List<HistoricalFigure> historicalFigureList) {
+	public HistoricalFiguresController(List<HistoricalFigure> historicalFigureList) {
+		
 		this.historicalFigureList = FXCollections.observableArrayList(historicalFigureList);
 	}
 	
@@ -64,54 +66,83 @@ public class HistoricalFigureController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
                 
     	idColumn.setCellValueFactory(new PropertyValueFactory<HistoricalFigure, Integer>("id"));
+    	
 		nameColumn.setCellValueFactory(new PropertyValueFactory<HistoricalFigure, String>("name"));
+		
 		periodsColumn.setCellValueFactory(cd -> {
 			try {
-				
 				String allPeriod = "" ;
 				int i = 0;
 				
 				while (i < cd.getValue().getPeriod().size()) {
 					
-					if (i == cd.getValue().getPeriod().size() - 1) {						
+					if (i == cd.getValue().getPeriod().size() - 1) {		
+						
 						allPeriod += cd.getValue().getPeriod().get(i).getNationalName();
+						
 					} else {
+						
 						allPeriod += cd.getValue().getPeriod().get(i).getNationalName() + ", ";
 					}
+					
 					i++;
 				}
 					
-				
 				return new SimpleStringProperty(allPeriod);
 					
 			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			return null;
 		});
 		placeColumn.setCellValueFactory(new PropertyValueFactory<HistoricalFigure, String>("place"));
-		descriptionColumn.setCellValueFactory(new PropertyValueFactory<HistoricalFigure, String>("description"));
 		
-		descriptionColumn.setCellFactory(param -> {
+		descriptionColumn.setCellValueFactory(cd -> { return new SimpleStringProperty("Xem thêm");});
+		
+		descriptionColumn.setCellFactory(cd -> {
+            
+			TableCell<HistoricalFigure, String> cell = new TableCell<HistoricalFigure, String>() {
+			    
+				final JFXButton btn = new JFXButton("Xem mô tả");
 			
-		        return new TableCell<HistoricalFigure, String>() {
-		            @Override
-		            protected void updateItem(String item, boolean empty) {
-		               
-		                    Text text = new Text(item);
-		                    text.setStyle("-fx-text-alignment:justify;");                      
-		                    text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
-		                    setGraphic(text);
-		            }
-		        };
-		    });
-		table.setFixedCellSize(180);
-		
+				@Override
+				protected void updateItem(String item, boolean empty) {
+					
+					setGraphic(btn);
+				}
+			};
+			
+			 cell.setOnMouseClicked(event -> {
+
+				 	FXMLLoader fxmlLoader = new FXMLLoader();
+				 	
+				 	fxmlLoader.setLocation(getClass().getResource("/screen/historicalFigure/historicalFigure.fxml"));
+				 
+				 	VBox figureBox = new VBox();
+				 	
+					try {
+						
+						figureBox = fxmlLoader.load();
+						
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+				 	HistoricalFigureController historicalFigureController = fxmlLoader.getController();
+				 	historicalFigureController.setData(cell.getTableRow().getItem());
+				 	
+			        rootPane.getChildren().removeAll();
+			        rootPane.getChildren().setAll(figureBox);
+	         });
+			 
+			 return cell;
+		});
 		
 		table.setItems(this.historicalFigureList);
         
 		figureFilter.textProperty().addListener(new ChangeListener<String>() {
+			
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String oldValue, String newValue) {
 				filterFigueWithName(newValue);
@@ -123,8 +154,10 @@ public class HistoricalFigureController implements Initializable {
 		
 		List<HistoricalFigure> returnList = new ArrayList<HistoricalFigure>();
 		
-		for (int i = 0; i < this.historicalFigureList.size(); i ++) {
-			if(this.historicalFigureList.get(i).getName().contains(name)) {
+		for (int i = 0; i < this.historicalFigureList.size(); i ++){
+			
+			if(this.historicalFigureList.get(i).getName().contains(name)){
+				
 				returnList.add(this.historicalFigureList.get(i));
 			}
 		}
