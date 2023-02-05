@@ -112,6 +112,6 @@ public class HistoricalFigure {
 
     public List<HistoricalPeriod> getPeriod() throws CloneNotSupportedException {
 
-        return this.periods;
+       return this.periods;
     }
 }
