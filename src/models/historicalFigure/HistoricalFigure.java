@@ -98,7 +98,7 @@ public class HistoricalFigure {
         return this.birthYeardeathYear;
     }
 
-    public String getplace() {
+    public String getPlace() {
         return this.place;
     }
 
@@ -112,13 +112,6 @@ public class HistoricalFigure {
 
     public List<HistoricalPeriod> getPeriod() throws CloneNotSupportedException {
 
-        List<HistoricalPeriod> listReturn = new ArrayList<HistoricalPeriod>();
-
-        for (HistoricalPeriod period : this.periods) {
-
-            listReturn.add((HistoricalPeriod) period.clone());
-        }
-
-        return listReturn;
+        return this.periods;
     }
 }
