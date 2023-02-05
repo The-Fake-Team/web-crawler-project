@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -33,6 +34,23 @@
                         <TableColumn fx:id="descriptionColumn" prefWidth="399.0" text="Mô tả" />
                     </columns>
                   </TableView>
+                  <HBox layoutX="582.0" layoutY="74.0" prefHeight="38.0" prefWidth="370.0" stylesheets="@../../css/style.css">
+                     <children>
+                        <TextField fx:id="figureFilter" prefHeight="37.0" prefWidth="318.0" promptText="Search by name" styleClass="transparent" stylesheets="@../../css/style.css" />
+                        <ImageView fx:id="filterButton" fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/loupe.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="round-layout" />
+                     </styleClass>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets />

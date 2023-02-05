@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<VBox prefHeight="186.0" prefWidth="816.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="shadow" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.historicEvent.HistoricEventController">
+<VBox prefHeight="186.0" prefWidth="856.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="shadow" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.historicEvent.HistoricEventController">
    <children>
-      <JFXButton fx:id="name" buttonType="RAISED" prefHeight="69.0" prefWidth="717.0" style="-fx-background-radius: 20;" text="Name">
+      <JFXButton fx:id="name" buttonType="RAISED" prefHeight="69.0" prefWidth="817.0" style="-fx-background-radius: 20;" text="Name">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -26,7 +26,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" left="710.0" top="50.0" />
+            <Insets bottom="10.0" left="730.0" top="30.0" />
          </VBox.margin>
       </JFXButton>
    </children>
