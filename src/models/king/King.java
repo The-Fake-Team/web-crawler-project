@@ -122,11 +122,4 @@ public class King extends HistoricalFigure {
 		return thuLinh;
 	}
 
-	@Override
-	public String toString() {
-		return "King [thuyHieu=" + thuyHieu + ", vua=" + vua + ", nienHieu=" + nienHieu + ", tenHuy=" + tenHuy
-				+ ", tietDoSu=" + tietDoSu + ", thuLinh=" + thuLinh + ", mieuHieu=" + mieuHieu + ", triVi=" + triVi
-				+ ", theThu=" + theThu + ", hoangDe=" + hoangDe + "]";
-	}
-
 }
