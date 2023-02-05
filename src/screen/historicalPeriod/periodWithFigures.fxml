@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.historicalPeriod.PeriodWithFiguresController">
+   <top>
+      <JFXButton fx:id="name" buttonType="RAISED" prefHeight="69.0" prefWidth="818.0" style="-fx-background-color: rgba(5, 47, 56, 0.73);" text="Button" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </JFXButton>
+   </top>
+   <center>
+      <TableView fx:id="table" prefHeight="488.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="248.0" text="Tên nhân vật" />
+          <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="276.0" text="Tỉnh thành" />
+            <TableColumn fx:id="periodsColumn" prefWidth="275.0" text="Thời kì" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
