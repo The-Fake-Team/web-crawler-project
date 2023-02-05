@@ -203,6 +203,7 @@ public class HistoricEvent implements Runnable{
 		        String url = myReader.nextLine();
 		        try {
 		        	historicEventList.add(infoFromLink(url, figureNameAndId));
+		        	System.out.println(url);
 		        }
 		        catch (IOException e) {
 		        	System.out.println(url + " has an error");

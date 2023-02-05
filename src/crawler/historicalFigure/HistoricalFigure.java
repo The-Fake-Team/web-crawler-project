@@ -17,12 +17,25 @@ public class HistoricalFigure implements Runnable{
 	
 	private static int figureId = 1;
 	
+	public static JSONObject extractYearOfBirth(String yearOfBirth) throws JSONException {
+		
+		JSONObject year = new JSONObject();
+		String[] yearsArray = yearOfBirth.split("-");
+		if (yearsArray.length==2) {
+			year.put("born", yearsArray[0].replaceAll("[^0-9]", ""));
+			year.put("dead", yearsArray[1].replaceAll("[^0-9]", ""));
+			return year;
+		}
+		System.out.println("Error");
+		return null;
+	}
+	
 	public static JSONObject infoFromLink(String url) throws IOException, JSONException {
 		
 		Document doc = Jsoup
 				        .connect(url)
 				        .userAgent("Jsoup client")
-				        .timeout(20000).get();
+				        .timeout(50000).get();
 		String[] allTimeStamps = {"2000 - 258", "257- 208", "207 trCN - 39", "40-43", "43-542",
 				 "544-602", "603-939", "905 - 938", "939-965", "968-980", "980-1009",
 				 "1010-1225", "1225-1400", "1400-1407", "1407-1413", "1414-1427", "1428-1527",
@@ -57,22 +70,23 @@ public class HistoricalFigure implements Runnable{
 					JSONArray periods = new JSONArray();
 					String periodSummnary = value.text();
 					String[] periodList = periodSummnary.substring(1).trim().split("\\) - ");
+
 					
 					for (int j = 0; j < periodList.length; j ++) {
 						JSONObject period = new JSONObject();
 						
 						period.put("name", periodList[j].replaceAll("\\(.+", "").trim());
-						
-						for (int k = 0; k < allTimeStamps.length; k++) {
-			        		
-			        		if (periodSummnary.contains(allTimeStamps[k])) {
-			        			
+												
+						for (int k = 0; k < allTimeStamps.length; k++) {	        		
+			        		if (periodList[j].contains(allTimeStamps[k])) {
 			        			JSONObject duration = new JSONObject();
+			        			
 			        			duration.put("start", allNormalizedTimeStamps[k][0]);
 			        			duration.put("end", allNormalizedTimeStamps[k][1]);
+			        			
 			        			period.put("duration", duration);
 			        		}
-			        		
+
 			        	}
 						
 						periods.put(period);
