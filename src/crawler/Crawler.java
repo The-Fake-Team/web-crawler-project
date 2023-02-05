@@ -7,7 +7,7 @@ import crawler.historicalSite.HistoricalSite;
 import crawler.historyEvent.*;
 import crawler.king.King;
 
-public class Crawler {
+public class Crawler implements Runnable{
 	
 	public static void crawlFestival () {
 		Festival festival = new Festival();
@@ -91,15 +91,15 @@ public class Crawler {
 		t3.start();
 	}
 	
-	public static void main(String[] args) {
+	public void run() {
 		
-//		getHistoricalFiguresUrl();
-//		crawlHistoricalFigure();
-//		crawlHistoricalSite();
+		getHistoricalFiguresUrl();
+		crawlHistoricalFigure();
+		crawlHistoricalSite();
 		crawlHistoricalPeriod();
-//		getEventsUrl();
-//		crawlHistoricEvent();
+		getEventsUrl();
+		crawlHistoricEvent();
 		crawlKing();
-//		crawlFestival();
+		crawlFestival();
 	}
 }

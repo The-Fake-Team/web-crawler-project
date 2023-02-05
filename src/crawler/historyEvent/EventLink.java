@@ -40,7 +40,6 @@ public class EventLink implements Runnable{
             file.getParentFile().mkdirs();
             FileWriter myWriter = new FileWriter(file);
             
-            System.out.println(myWriter);
             myWriter.write(allIndividualEventUrls);
             myWriter.close();
             
