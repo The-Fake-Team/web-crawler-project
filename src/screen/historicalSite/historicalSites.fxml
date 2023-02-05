@@ -35,8 +35,8 @@
                   </TableView>
                   <HBox layoutX="593.0" layoutY="65.0" prefHeight="38.0" prefWidth="370.0" stylesheets="@../../css/style.css">
                      <children>
-                        <TextField fx:id="festivalFilter" prefHeight="37.0" prefWidth="318.0" promptText="Search" styleClass="transparent" stylesheets="@../../css/style.css" />
-                        <ImageView fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="siteFilter" prefHeight="37.0" prefWidth="318.0" promptText="Search by name" styleClass="transparent" stylesheets="@../../css/style.css" />
+                        <ImageView fx:id="filterButton" fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/loupe.png" />
                            </image>
