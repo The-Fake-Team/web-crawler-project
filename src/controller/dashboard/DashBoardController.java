@@ -27,16 +27,13 @@ import java.util.ResourceBundle;
 
 import controller.festival.FestivalsController;
 import controller.historicEvent.HistoricEventsController;
-import controller.historicalFigure.HistoricalFigureController;
+import controller.historicalFigure.HistoricalFiguresController;
 import controller.historicalPeriod.HistoricalPeriodController;
 import controller.historicalPeriod.HistoricalPeriodsController;
+import controller.historicalPeriod.PeriodWithFiguresController;
 import controller.historicalSite.HistoricalSitesController;
 import controller.king.KingController;
-import data.FestivalData;
-import data.HistoricEventData;
-import data.HistoricalFigureData;
 import data.HistoricalPeriodData;
-import data.HistoricalSiteData;
 
 public class DashBoardController implements Initializable {
 	
@@ -80,45 +77,53 @@ public class DashBoardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	
-    	createPeriodBar();
+    	try {
+			createPeriodBar();
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
          
         Exit.setOnMouseClicked(e -> {
 
             System.exit(0);
 
         });
+        
         Minimize.setOnMouseClicked(e -> {
+        	
             stage = (Stage) window.getScene().getWindow();
             stage.setIconified(true);
         });
+        
         Maximize.setOnMouseClicked(e -> {
+        	
             stage = (Stage) window.getScene().getWindow();
+            
             if(stage.isMaximized())
                 stage.setMaximized(false);
             else
                 stage.setMaximized(true);
         });
 
-        
-
         try {
+        	
             Parent fxml = FXMLLoader.load(getClass().getResource("/screen/homePage/homePage.fxml"));
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
 
         } catch (IOException ex) {
-//            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
-    private void createPeriodBar () {
+    private void createPeriodBar () throws CloneNotSupportedException {
     	
     	HistoricalPeriodData historicalPeriodData = new HistoricalPeriodData("src\\data\\period.json");
 		
     	ObservableList<HistoricalPeriod> historicalPeriods = FXCollections.observableArrayList(historicalPeriodData.readData());
 
-    	int row = 0;
-    	int column = 2;
+    	int row = 1;
+    	int column = 1;
     	
     	try {
     		
@@ -130,28 +135,62 @@ public class DashBoardController implements Initializable {
 	    		
 	    		VBox periodBox = fxmlLoader.load();
 	    		
+	    		
 	    		HistoricalPeriodController HistoricalPeriodController = fxmlLoader.getController();
 	    		
-	    		if (column == 3) {
+	    		if (column == 2) {
 	    			
-	    			column = 0;
+	    			column = 1;
 	    			++row;
 	    		}
 	    		
 	    		HistoricalPeriodController.setData(period);
 	    		
 	    		periodContainer.add(periodBox, column ++, row);
-	    		periodContainer.setMargin(periodBox, new Insets(2));
+	    		
+	    		periodContainer.setMargin(periodBox, new Insets(1,1,1,1));
+	    		
+	    		periodBox.getChildren().get(0).setOnMouseClicked(event -> {
+	                BorderPane fxml = null;
+	                
+		    		FXMLLoader fxmlLoader1 = new FXMLLoader();
+
+					try {
+												
+			    		fxmlLoader1.setLocation(getClass().getResource("/screen/historicalPeriod/periodWithFigures.fxml"));
+			    		
+			    		fxml = fxmlLoader1.load();
+
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+					
+					PeriodWithFiguresController periodWithFiguresController = fxmlLoader1.getController();
+				 	
+				 	try {
+				 		
+				 		periodWithFiguresController.setData(period);
+				 		
+					} catch (CloneNotSupportedException e) {
+						
+						e.printStackTrace();
+					}
+					
+	                contentArea.getChildren().clear();
+	                contentArea.getChildren().setAll(fxml);
+	    		});
 	    	}
     	} catch (IOException e) {
-    	
+    		
+            contentArea.getChildren().removeAll();
     	}
     }
     
     @FXML
     private void homePage(javafx.event.ActionEvent event) throws IOException {
+    	
         Parent fxml = FXMLLoader.load(getClass().getResource("/screen/homePage/homePage.fxml"));
-        
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
 
@@ -184,7 +223,7 @@ public class DashBoardController implements Initializable {
     private void historicalFigures(javafx.event.ActionEvent event) throws IOException {
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/historicalFigure/historicalFigures.fxml"));    	
-    	HistoricalFigureController historicalFiguresController = new HistoricalFigureController(this.historicalFigures);
+    	HistoricalFiguresController historicalFiguresController = new HistoricalFiguresController(this.historicalFigures);
     	loader.setController(historicalFiguresController);
         Parent fxml = loader.load();
         contentArea.getChildren().removeAll();
@@ -222,7 +261,5 @@ public class DashBoardController implements Initializable {
         Parent fxml = loader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
-
     }
-
 }
